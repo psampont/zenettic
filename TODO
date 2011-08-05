@@ -9,13 +9,3 @@
 
 -= TO DO list =-
 ~ enhance the ping
-
--= Done =-
-0.1
-+ Ping
-+ WakeUp
-+ Shutdown (Windows Station only)
-0.0.2
-+ Karma : history of operations
-0.0.1
-~ Correct problem with case in device name
