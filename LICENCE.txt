@@ -1,0 +1,2 @@
+LICENCE
+This software is published unde GPL3 licence.

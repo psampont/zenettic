@@ -1,0 +1,17 @@
+-= Roadmap =-
+0.1 Net operations and History
+0.2 User interface
+    Generate API doc
+0.3 Basic Cron jobs : Ping each 1/4 hour
+    Manager Linux device
+0.4 Calcul of economy
+0.5 Schedule WOL/SD 
+
+-= TO DO list =-
+~ enhance the ping
+
+-= Done =-
+0.0.2
++ Karma : history of operations
+0.0.1
+~ Correct problem with case in device name
