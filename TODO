@@ -1,11 +1,18 @@
 -= Roadmap =-
 0.1 Net operations and History
 0.2 User interface
-    Generate API doc
-0.3 Basic Cron jobs : Ping each 1/4 hour
+    Basic Cron jobs : Ping each 1/4 hour
+0.3 Add functionalities : Reboot, timeout
     Manager Linux device
+    Generate API doc
 0.4 Calcul of economy
-0.5 Schedule WOL/SD 
+    Interface translation
+0.5 Schedule WOL/SD
 
 -= TO DO list =-
 ~ enhance the ping
++ Manage IP modification
++ Log Who/Which computer has make an action
++ use argparse
++ Page error 404 and 500
++ Review design, make it simplier

@@ -1,4 +1,8 @@
 -= Changelog =-
+-= Done =-
+0.2
++ Web interface
+~ Replace function os.system to subproccess
 0.1
 + Ping
 + WakeUp
