@@ -7,18 +7,19 @@ Functions to manage network devices.
 __docformat__ = 'epytext en'
 
 
-###################################################################### 
-## Imports 
-###################################################################### 
+######################################################################
+## Imports
+######################################################################
 
 import socket
 import struct
 import os
 import re
+import subprocess
 
-###################################################################### 
+######################################################################
 ## Logging
-###################################################################### 
+######################################################################
 
 import logging
 
@@ -30,16 +31,16 @@ h = NullHandler()
 logging.getLogger("lib-device").addHandler(h)
 
 
-###################################################################### 
+######################################################################
 ## Wake on lan
-###################################################################### 
+######################################################################
 
 ## {{{ http://code.activestate.com/recipes/358449/ (r3)
 
 def wake_on_lan(MACaddress):
-    """ 
-    Wake up a remote device with MACaddress. 
-    
+    """
+    Wake up a remote device with MACaddress.
+
     @param MACaddress: The MAC address of the device
     """
 
@@ -51,10 +52,10 @@ def wake_on_lan(MACaddress):
         MACaddress = MACaddress.replace(sep, '')
     else:
         raise ValueError('Incorrect MAC address format')
- 
+
     # Pad the synchronization stream.
     data = ''.join(['FFFFFFFFFFFF', MACaddress * 20])
-    send_data = '' 
+    send_data = ''
 
     # Split up the hex values and pack.
     for i in range(0, len(data), 2):
@@ -64,20 +65,20 @@ def wake_on_lan(MACaddress):
     # Broadcast it to the LAN.
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-    sock.sendto(send_data, ('<broadcast>', 7))  
+    sock.sendto(send_data, ('<broadcast>', 7))
 
 ## end of http://code.activestate.com/recipes/358449/ }}}
 
-###################################################################### 
+######################################################################
 ## Shutdown
-###################################################################### 
+######################################################################
 
 ## {{{ http://code.activestate.com/recipes/360649/ (r1)
 # win32shutdown.py
 
 def shutdown_win32(host=None, user=None, passwrd=None, msg=None, timeout=0, force=1, reboot=0):
     """ Shuts down a remote computer, requires NT-BASED OS. """
-    
+
     import win32api
     import win32con
     import win32netcon
@@ -113,47 +114,51 @@ def shutdown_win32(host=None, user=None, passwrd=None, msg=None, timeout=0, forc
 
 ## end of http://code.activestate.com/recipes/360649/ }}}
 
-def shutdown(hostname, user=None, passwd=None, msg=None, timeout=0, force=False, reboot=False):
-     """ 
-     Shutdown the device 'hostname' 
-     
+def shutdown(hostname, user=None, passwd=None, msg=None, timeout=0, force=False):
+     """
+     Shutdown the device 'hostname'
+
      @param hostname: The hostname of the device to shutdown
      @param user: An administrator of the machine
      @param passwd: The administrator password
      @param msg: The message to display on the remote computer
      @param timeout: The delay before making the shutdown
      @param force: If True, the user can't cancel the shutdown
-     @param reboot: If True, the computer restart after the shutdown
      @result: Command line result
      """
 
-
      command = "net rpc shutdown -I %s -U %s" % (hostname, user)
+     if passwd :
+         command = command + '%' + passwd
      if force :
-        command = command + ' -f'
+         command = command + ' -f'
      if reboot :
-        command = command + ' -r'
+         command = command + ' -r'
      if msg :
-        command = command + ' -C ' + msg
+         command = command + ' -C ' + msg
      if timeout > 0 :
-        command = command + ' -t ' + str(timeout)
+         command = command + ' -t ' + str(timeout)
      logging.debug(command)
-     return os.system(command)
 
-###################################################################### 
+     subprocess.Popen([command], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).communicate()
+
+######################################################################
 ## Ping
-###################################################################### 
+######################################################################
 
 def ping(hostname):
     """
     Ping the device 'hostname'
-    
+
     @param hostname: The hostname of the device to ping
     @result: True if host is online
     """
 
     command = "ping -c 3 -i 0.3 %s" % (hostname)
     logging.debug(command)
-    result = os.popen(command).read()
+    std = subprocess.Popen([command], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).communicate()
+    logging.debug("stdout= " + std[0])
+    logging.debug("stderr= " + std[1])
+    result = std[0]
 
     return re.search('3 received', result)
