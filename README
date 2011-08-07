@@ -1,12 +1,12 @@
 ABOUT
 
-Bodhi manage power on/off of remote computers.
+Bodhi : manage wakeups and shutdowns of remote devices.
 
-INSTALL
+INSTALLATION
 
 To install, copy every files in a directory.
 
 This software need :
 - Python 2.7
 - Django 1
-- Samba package for shutdown of Windows computers
+- Samba package for shutdowns of Windows computers

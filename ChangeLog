@@ -2,12 +2,12 @@
 -= Done =-
 0.2
 + Web interface
-+ History command
 ~ Replace function os.system to subproccess
 0.1
-+ Ping
-+ WakeUp
++ Ping command 
++ WakeUp command
 + Shutdown (Windows Station only)
++ History command
 0.0.2
 + Karma : history of operations
 0.0.1
