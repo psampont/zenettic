@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <title>Zen&TIC - Bodhi</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Manage remote computer"/>
+    <link rel="stylesheet" type="text/css" href="/styles/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/zenettic.css" />
+    <link rel="shortcut icon" href="/pix/icons/favicon.png" />
+</head>
+<body>
+    <script>
+        document.body.style.backgroundImage="url(/pix/backgrounds/zen-garden.jpg)";
+        document.body.style.backgroundAttachment='fixed';
+        document.body.style.backgroundPosition='center center';
+        document.body.style.backgroundRepeat="no-repeat";
+    </script>
+    <div id="titlerow">
+        <div class="logo">
+            <a href="/"><img src="/pix/logo.png"></a>
+            <span>Bodhi</span>
+        </div>
+    </div>
+    <div id="toolbartop">
+        <div id="toolbarleft">
+            <div id="toolbarright">
+                <div id="toolbar">
+                    <div id="toolbarcontent">
+                        <ul>
+                          <li>
+                              <a href="/" class="ed_home">Home</a>
+                          </li>
+                          <li>
+                              <a href="/bodhi/" class="ed_orgs">Bodhi</a>
+                          </li>
+                          <li class="sep">&nbsp;</li>
+                          <li class="right">
+                             <a href="/help" class="ed_help">Help</a>
+                          </li>
+                          <li class="sep">&nbsp;</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content">
+                  {% block main %}
+                  {% endblock %}
+                </div>
+    {% if error_message %}
+    <div id="errorcontainer">
+      <div id="errortop">
+        <div id="errorheader">ERROR</div>
+        <div id="errorcontent">
+            {{ error_message }}
+        </div>
+        <div id="errorfooter"></div>
+      </div>
+    </div>
+    {% endif %}
+                <div id="footrowcontent">
+                    <div id="footrow">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

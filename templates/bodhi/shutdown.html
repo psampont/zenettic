@@ -1,0 +1,19 @@
+{% extends "main.html" %}
+{% block main %}
+  {% if not latest %}
+    <p>Device not in the DB.</p>
+  {% else %}
+    <img src="/pix/computer.png" align="left" alt="computer" height="80" />
+    <h1>{{latest.device.name}}</h1>
+    Shutdown ?
+    <form action="/bodhi/{{ latest.device.id }}/shutdown" method="post">
+        User : <input type="text" name="user" ><br />
+        Password : <input type="password" name="password" ><br />
+        <input type="submit" value="Send" />
+    </form>
+    <br />
+    <br />
+    <form action="/bodhi/{{ device.device.id }}/" method="post">
+        <input type="submit" value="Cancel" />
+    </form>  {% endif %}
+{% endblock %}

@@ -1,0 +1,180 @@
+/* 
+================================================
+autosuggest, inquisitor style
+================================================
+*/
+
+body
+{
+	position: relative;
+}
+
+
+div.autosuggest
+{
+	position: absolute;
+	background-image: url(../pix/as_pointer.gif);
+	background-position: 40px 0px;
+	background-repeat: no-repeat;
+	padding: 10px 0 0 0;	
+}
+
+div.autosuggest div.as_header
+{
+	position: relative;
+	height: 6px;
+	padding: 0 6px;
+	background-color:#f8f8f8;
+	border-top: 1px solid #ccc;
+	-moz-border-radius: 5px 5px 0px 0px;
+	-webkit-border-radius: 5px 5px 0px 0px;
+	border-left: 1px solid #ccc;	
+	border-right: 1px solid #ccc;		
+	overflow: hidden;
+}
+
+div.autosuggest div.as_footer
+{
+	position: relative;
+	height: 6px;
+	padding: 0 6px;
+	background-color:#f8f8f8;
+	border-bottom: 1px solid #ccc;
+	-moz-border-radius: 0px 0px 5px 5px;
+	-webkit-border-radius: 0px 0px 5px 5px;
+	border-left: 1px solid #ccc;	
+	border-right: 1px solid #ccc;	
+	overflow: hidden;
+}
+
+div.autosuggest div.as_corner,
+div.autosuggest div.as_corner
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 6px;
+	width: 6px;
+}
+div.autosuggest div.as_footer div.as_corner
+{
+
+}
+div.autosuggest div.as_header div.as_bar,
+div.autosuggest div.as_footer div.as_bar
+{
+	height: 6px;
+	overflow: hidden;
+	background-color: #f8f8f8;
+}
+
+
+div.autosuggest ul
+{
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	list-style: none;
+	margin: 0 0 -4px 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #f8f8f8;
+}
+
+div.autosuggest ul li
+{
+	color: #ccc;
+	padding: 0;
+	margin: 0 4px 4px;
+	text-align: left;
+}
+
+div.autosuggest ul li a
+{
+	color: #eee;
+	display: block;
+	text-decoration: none;
+	background-color: transparent;
+	text-shadow: #000 0px 0px 5px;
+	position: relative;
+	padding: 0;
+	width: 100%;
+	border: 1px #eee solid;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+div.autosuggest ul li a:hover
+{
+	background-color: #444;
+}
+div.autosuggest ul li.as_highlight a:hover
+{
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background-color: #c7d5a9;
+	border: 1px #b0d560 solid;
+}
+
+div.autosuggest ul li a span
+{
+	display: block;
+	padding: 3px 6px;
+	font-weight: bold;
+}
+
+div.autosuggest ul li a span small
+{
+	font-weight: normal;
+	color: #eee;
+}
+
+div.autosuggest ul li.as_highlight a span small
+{
+	color: #fff;
+}
+
+div.autosuggest ul li.as_highlight a
+{
+	color: #fff;
+	background-color: #c7d5a9;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+div.autosuggest ul li a .tl,
+div.autosuggest ul li a .tr
+{
+	background-image: transparent;
+	background-repeat: no-repeat;
+	width: 6px;
+	height: 6px;
+	position: absolute;
+	top: 0;
+	padding: 0;
+	margin: 0;
+}
+div.autosuggest ul li a .tr
+{
+	right: 0;
+}
+
+div.autosuggest ul li.as_highlight a .tl
+{
+	left: 0;
+}
+
+div.autosuggest ul li.as_highlight a .tr
+{
+	right: 0;
+}
+
+div.autosuggest ul li.as_warning
+{
+	font-weight: bold;
+	text-align: center;
+}
+
+div.autosuggest ul em
+{
+	font-style: normal;
+	color: #b0d560;
+}
