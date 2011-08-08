@@ -6,7 +6,8 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Example:
+    (r'^$', 'lib.webpages.homepage'),
+    (r'^help$', 'lib.webpages.help'),
     (r'^bodhi/', include('zenettic.bodhi.urls')),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs'
@@ -26,4 +27,3 @@ if DEBUG:
          {'document_root': 'c:/Users/psa/Projects/zenettic/templates/pix/'}),
 #         {'document_root': '/home/psa/Projects/zenettic/templates/pix/'}),
     )
-
