@@ -4,12 +4,14 @@ Bodhi : manage wakeups and shutdowns of remote devices.
 
 INSTALLATION
 
-To install, copy every files in a directory.
-
 This software need :
 - Python 2.7
 - Django 1
 - Samba package for shutdowns of Windows computers
+
+To install, copy every files in a directory.
+
+In settings.py, modify TEMPLATE_DIRS with your directory.
 
 DATABASE
 
