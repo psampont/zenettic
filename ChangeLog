@@ -1,7 +1,7 @@
 -= Changelog =-
--= Done =-
 0.2
 + Web interface
++ Put sample data in sql files and delete sqlite DB
 ~ Replace function os.system to subproccess
 0.1
 + Ping command 

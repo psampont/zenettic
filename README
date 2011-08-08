@@ -10,3 +10,15 @@ This software need :
 - Python 2.7
 - Django 1
 - Samba package for shutdowns of Windows computers
+
+DATABASE
+
+Database parameters are stored in settings.py. Fill in DATABASE_* field before 
+creating the database. With default settings, manage.py will create sqlite3 
+database. 
+If you want, initialize database with sample data, rename directory 
+bodhi/sql.sample to bodhi/sql
+
+To create database, run command :
+
+manage.py syncdb
