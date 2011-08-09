@@ -4,10 +4,12 @@ Bodhi : manage wakeups and shutdowns of remote devices.
 
 INSTALLATION
 
+This version is a development version and deployment in production environment is not yet supported.
+
 This software need :
-- Python 2.7
-- Django 1
-- Samba package for shutdowns of Windows computers
+- Python >= 2.7
+- Django >= 1
+- Samba package for shutdowns of Windows computers from Linux
 
 To install, copy every files in a directory.
 
