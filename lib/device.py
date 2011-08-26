@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# device.py : Device functions
 
 """
 Functions to manage network devices.
@@ -70,77 +69,111 @@ def wake_on_lan(MACaddress):
 ## end of http://code.activestate.com/recipes/358449/ }}}
 
 ######################################################################
-## Shutdown
+## Shutdown of Windows devices
 ######################################################################
 
-## {{{ http://code.activestate.com/recipes/360649/ (r1)
-# win32shutdown.py
+if os.name == 'nt' :
 
-def shutdown_win32(host=None, user=None, passwrd=None, msg=None, timeout=0, force=1, reboot=0):
-    """ Shuts down a remote computer, requires NT-BASED OS. """
+    ## {{{ http://code.activestate.com/recipes/360649/ (r1)
+    # win32shutdown.py
 
-    import win32api
-    import win32con
-    import win32netcon
-    import win32security
-    import win32wnet
+    def shutdown(host=None, user=None, passwrd=None, msg=None, timeout=0, force=1, reboot=False):
+        """ Shuts down a remote computer, requires NT-BASED OS. """
 
-    # Create an initial connection if a username & password is given.
-    connected = 0
-    if user and passwrd:
-        try:
-            win32wnet.WNetAddConnection2(win32netcon.RESOURCETYPE_ANY, None,
-                                         ''.join([r'\\', host]), None, user,
-                                         passwrd)
-        # Don't fail on error, it might just work without the connection.
-        except:
-            pass
-        else:
-            connected = 1
-    # We need the remote shutdown or shutdown privileges.
-    p1 = win32security.LookupPrivilegeValue(host, win32con.SE_SHUTDOWN_NAME)
-    p2 = win32security.LookupPrivilegeValue(host,
-                                            win32con.SE_REMOTE_SHUTDOWN_NAME)
-    newstate = [(p1, win32con.SE_PRIVILEGE_ENABLED),
-                (p2, win32con.SE_PRIVILEGE_ENABLED)]
-    # Grab the token and adjust its privileges.
-    htoken = win32security.OpenProcessToken(win32api.GetCurrentProcess(),
-                                           win32con.TOKEN_ALL_ACCESS)
-    win32security.AdjustTokenPrivileges(htoken, False, newstate)
-    win32api.InitiateSystemShutdown(host, msg, timeout, force, reboot)
-    # Release the previous connection.
-    if connected:
-        win32wnet.WNetCancelConnection2(''.join([r'\\', host]), 0, 0)
+        import win32api
+        import win32con
+        import win32netcon
+        import win32security
+        import win32wnet
 
-## end of http://code.activestate.com/recipes/360649/ }}}
+        # Create an initial connection if a username & password is given.
+        connected = 0
+        if user and passwrd:
+            try:
+                win32wnet.WNetAddConnection2(win32netcon.RESOURCETYPE_ANY, None,
+                                             ''.join([r'\\', host]), None, user,
+                                             passwrd)
+            # Don't fail on error, it might just work without the connection.
+            except:
+                pass
+            else:
+                connected = 1
+        # We need the remote shutdown or shutdown privileges.
+        p1 = win32security.LookupPrivilegeValue(host, win32con.SE_SHUTDOWN_NAME)
+        p2 = win32security.LookupPrivilegeValue(host,
+                                                win32con.SE_REMOTE_SHUTDOWN_NAME)
+        newstate = [(p1, win32con.SE_PRIVILEGE_ENABLED),
+                    (p2, win32con.SE_PRIVILEGE_ENABLED)]
+        # Grab the token and adjust its privileges.
+        htoken = win32security.OpenProcessToken(win32api.GetCurrentProcess(),
+                                               win32con.TOKEN_ALL_ACCESS)
+        win32security.AdjustTokenPrivileges(htoken, False, newstate)
+        win32api.InitiateSystemShutdown(host, msg, timeout, force, reboot)
+        # Release the previous connection.
+        if connected:
+            win32wnet.WNetCancelConnection2(''.join([r'\\', host]), 0, 0)
 
-def shutdown(hostname, user=None, passwd=None, msg=None, timeout=0, force=False):
-     """
-     Shutdown the device 'hostname'
+    ## end of http://code.activestate.com/recipes/360649/ }}}
+else: 
+    def shutdown(hostname, user=None, passwd=None, msg=None, timeout=0, force=False, reboot=False):
+         """
+         Shutdown the device 'hostname'
 
-     @param hostname: The hostname of the device to shutdown
-     @param user: An administrator of the machine
-     @param passwd: The administrator password
-     @param msg: The message to display on the remote computer
-     @param timeout: The delay before making the shutdown
-     @param force: If True, the user can't cancel the shutdown
-     @result: Command line result
-     """
+         @param hostname: The hostname of the device to shutdown
+         @param user: An administrator of the machine
+         @param passwd: The administrator password
+         @param msg: The message to display on the remote computer
+         @param timeout: The delay in second before making the shutdown
+         @param force: If True, the user can't cancel the shutdown
+         @param reboot: If True, the device is restarted after the shutdown
+         @result: Command line result
+         """
 
-     command = "net rpc shutdown -I %s -U %s" % (hostname, user)
-     if passwd :
-         command = command + '%' + passwd
-     if force :
-         command = command + ' -f'
-     if reboot :
-         command = command + ' -r'
-     if msg :
-         command = command + ' -C ' + msg
-     if timeout > 0 :
-         command = command + ' -t ' + str(timeout)
-     logging.debug(command)
+         command = "net rpc shutdown -I %s -U %s" % (hostname, user)
+         if passwd :
+             command = command + '%' + passwd
+         if force :
+             command = command + ' -f'
+         if reboot :
+             command = command + ' -r'
+         if msg :
+             command = command + ' -C ' + msg
+         if timeout > 0 :
+             command = command + ' -t ' + str(timeout)
+         logging.debug(command)
 
-     subprocess.Popen([command], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).communicate()
+         subprocess.Popen([command], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).communicate()
+
+######################################################################
+## Shutdown of Linux devices
+######################################################################
+
+
+def shutdown_nix(hostname, user=None, passwd=None, msg=None, timeout=0, reboot=False):
+    """
+    Shutdown the device 'hostname'
+
+    @param hostname: The hostname of the device to shutdown
+    @param user: An administrator of the machine
+    @param passwd: The administrator password
+    @param msg: The message to display on the remote computer
+    @param timeout: The delay in minute before making the shutdown
+    @param force: If True, the user can't cancel the shutdown
+    @param reboot: If True, the device is restarted after the shutdown
+    @result: Command line result
+    """
+     
+    command = "ssh %s@%s shutdown" % (user, hostname)
+    if reboot :
+        command = command + ' -r'
+    else:
+        command = command + ' -h'
+    command = command + " %s" % timeout
+    if msg: 
+        command = command + " " + msg
+    
+    logging.debug(command)
+    subprocess.Popen([command], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).communicate()
 
 ######################################################################
 ## Ping
