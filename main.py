@@ -6,7 +6,7 @@ __docformat__ = 'epytext en'
 ######################################################################
 ## Constants
 ######################################################################
-VERSION = "0.2"
+VERSION = "0.3"
 
 ######################################################################
 ## Imports
@@ -27,7 +27,7 @@ setup_environ(settings)
 
 from bodhi.models import Device, History
 from bodhi.choices import *
-from lib.device import wake_on_lan, shutdown, ping
+from lib.device import wake_on_lan, shutdown, shutdown_nix, ping
 from lib.karma import Karma
 
 ######################################################################
@@ -89,9 +89,9 @@ for device in devices :
         if (device.shutdown == False) :
             logging.error("This device don't allow the shutdown.")
         else:
-            print("Shutdone device : %s" % device.name)
+            print("Shutdown device : %s" % device.name)
             try :
-              shutdown(device.name, 'administrator', timeout=60)
+              shutdown_nix(device.name, 'root', msg="Remote shutdown by bodhi", timeout=1)
             except Exception as e:
                 logging.error("Exception %s" % e)
                 hf.save(device, 2, -1)
