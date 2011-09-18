@@ -91,7 +91,10 @@ for device in devices :
         else:
             print("Shutdown device : %s" % device.name)
             try :
-              shutdown_nix(device.name, 'root', msg="Remote shutdown by bodhi", timeout=1)
+                if (device.platform == 'linux') :
+                    shutdown_nix(device.name, 'root', msg="Remote shutdown by bodhi", timeout=1)
+                else:
+                    shutdown(device.name, 'administrator', timeout=60)
             except Exception as e:
                 logging.error("Exception %s" % e)
                 hf.save(device, 2, -1)
