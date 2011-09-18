@@ -107,17 +107,17 @@ for device in devices :
         if (device.shutdown == False) :
             logging.error("This device don't allow the shutdown.")
         else:
-            print("Shutdown device : %s" % device.name)
+            print("Reboot device : %s" % device.name)
             try :
                 if (device.platform == 'linux') :
-                    shutdown_nix(device.name, 'root', msg="Remote shutdown by bodhi", timeout=1, reboot=True)
+                    shutdown_nix(device.name, 'root', msg="Remote reboot by bodhi", timeout=1, reboot=True)
                 else:
-                    shutdown_win(device.name, 'administrator', msg="Remote shutdown by bodhi", timeout=60, reboot=True)
+                    shutdown_win(device.name, 'administrator', msg="Remote reboot by bodhi", timeout=60, reboot=True)
             except Exception as e:
                 logging.error("Exception %s" % e)
-                hf.save(device, 2, -1)
+                hf.save(device, 3, -1)
             else:
-                hf.save(device, 2, 0)
+                hf.save(device, 3, 0)
     elif options.wol :
         if (device.wakeup == False) :
             logging.error("This device don't allow the wake up.")

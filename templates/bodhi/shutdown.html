@@ -5,10 +5,20 @@
   {% else %}
     <img src="/pix/computer.png" align="left" alt="computer" height="80" />
     <h1>{{latest.device.name}}</h1>
-    Shutdown ?
+    {% if reboot %}
+        Reboot ?
+    {% else %}
+        Shutdown ?
+    {% endif %}
     <form action="/bodhi/{{ latest.device.id }}/shutdown" method="post">
-        User : <input type="text" name="user" ><br />
-        Password : <input type="password" name="password" ><br />
+        User : <input type="text" name="user" /><br />
+        Password : <input type="password" name="password" /><br />
+        Reboot :
+        {% if reboot %}
+            <input type="checkbox" name="reboot" value=0><br />
+        {% else %}
+            <input type="checkbox" name="reboot" value=1><br />
+        {% endif %}
         <input type="submit" value="Send" />
     </form>
     <br />

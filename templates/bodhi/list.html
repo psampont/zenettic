@@ -1,13 +1,13 @@
 {% extends "main.html" %}
-{% block main %}	
+{% block main %}
   {% if not history %}
-    <p>No device in the DB.</p>    
+    <p>No device in the DB.</p>
   {% else %}
-    <div id="entrycontainer" class="clearfix"> 
+    <div id="entrycontainer" class="clearfix">
     {% for device in history %}
     <div class="facelist_entry">
         <a href="{{device.device_id}}/"><img src="/pix/computer.png"
-		       align="left" class="photo" alt="" height="80" />
+               align="left" class="photo" alt="" height="80" />
         <p class="title">{{device.device.name}}</p></a>
         {% if device.action == 0 %}
           {% if not device.result %}
@@ -17,7 +17,13 @@
           {% endif %}
         {% endif %}
         {% if device.action == 1 %}
-            Wake UP !
+            Wake UP...
+        {% endif %}
+        {% if device.action == 2 %}
+            Shutdown...
+        {% endif %}
+        {% if device.action == 3 %}
+            Rebooting...
         {% endif %}
         <br />
         <font size="-1">{{device.timestamp|timesince}}</font><br />

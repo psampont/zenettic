@@ -106,7 +106,13 @@ def device_ask_pass(request, device_id):
                                 'error_message' : error_message})
     else:
         last = History.objects.filter(device=device_id).latest('timestamp')
-        return render_to_response('bodhi/shutdown.html', {'latest': last})
+
+        if request.GET["reboot"] == '1' :
+            reboot = True
+        else:
+            reboot = False
+        return render_to_response('bodhi/shutdown.html', {'latest': last,
+                                                          'reboot': reboot})
 
 def device_shutdown(request, device_id):
     '''
@@ -119,15 +125,19 @@ def device_shutdown(request, device_id):
     else:
         hf = Karma()
         try:
-            if dev.platform == "linux" :
-                shutdown_nix(dev.name, request.POST['user'], request.POST['password'], timeout=1)
+            if request.POST['reboot']:
+                action = 3
             else:
-                shutdown_win(dev.name, request.POST['user'], request.POST['password'], timeout=60)
+                action = 2
+            if dev.platform == "linux" :
+                shutdown_nix(dev.name, request.POST['user'], request.POST['password'], request.POST['reboot'], timeout=1)
+            else:
+                shutdown_win(dev.name, request.POST['user'], request.POST['password'], request.POST['reboot'], timeout=60)
         except Exception as e:
             error_message = e.__unicode__()
-            hf.save(dev, 2, -1)
+            hf.save(dev, action, -1)
         finally:
-            hf.save(dev, 2, 0)
+            hf.save(dev, action, 0)
     last = History.objects.filter(device=device_id).latest('timestamp')
     his = History.objects.filter(device=device_id)
     return render_to_response('bodhi/device.html',
