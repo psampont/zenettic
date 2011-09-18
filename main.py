@@ -27,7 +27,7 @@ setup_environ(settings)
 
 from bodhi.models import Device, History
 from bodhi.choices import *
-from lib.device import wake_on_lan, shutdown, shutdown_nix, ping
+from lib.device import wake_on_lan, shutdown_win, shutdown_nix, ping
 from lib.karma import Karma
 
 ######################################################################
@@ -43,9 +43,12 @@ parser.add_option("-p", "--ping",
 parser.add_option("-w", "--wol",
                   action="store_true", dest="wol", default=False,
                   help="Wake up the device.")
+parser.add_option("-r", "--reboot",
+                  action="store_true", dest="reboot", default=False,
+                  help="Reboot the device.")
 parser.add_option("-s", "--shutdown",
                   action="store_true", dest="shutdown", default=False,
-                  help="Make a shutdown of the device.")
+                  help="Shutdown the device.")
 parser.add_option("-i", "--history",
                   action="store_true", dest="history", default=False,
                   help="Display history.")
@@ -94,7 +97,22 @@ for device in devices :
                 if (device.platform == 'linux') :
                     shutdown_nix(device.name, 'root', msg="Remote shutdown by bodhi", timeout=1)
                 else:
-                    shutdown(device.name, 'administrator', timeout=60)
+                    shutdown_win(device.name, 'administrator', msg="Remote shutdown by bodhi", timeout=60)
+            except Exception as e:
+                logging.error("Exception %s" % e)
+                hf.save(device, 2, -1)
+            else:
+                hf.save(device, 2, 0)
+    elif options.reboot :
+        if (device.shutdown == False) :
+            logging.error("This device don't allow the shutdown.")
+        else:
+            print("Shutdown device : %s" % device.name)
+            try :
+                if (device.platform == 'linux') :
+                    shutdown_nix(device.name, 'root', msg="Remote shutdown by bodhi", timeout=1, reboot=True)
+                else:
+                    shutdown_win(device.name, 'administrator', msg="Remote shutdown by bodhi", timeout=60, reboot=True)
             except Exception as e:
                 logging.error("Exception %s" % e)
                 hf.save(device, 2, -1)

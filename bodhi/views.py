@@ -11,7 +11,7 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response, get_object_or_404
 from bodhi.choices import *
 
-from lib.device import wake_on_lan, shutdown, ping
+from lib.device import wake_on_lan, shutdown_win, shutdown_nix, ping
 from lib.karma import Karma
 
 ######################################################################
@@ -71,7 +71,7 @@ def device_wol(request, device_id):
     error_message = None
     dev = get_object_or_404(Device, pk=device_id)
     if dev.wakeup == False :
-        error_message = "This device don't allow the shutdown."
+        error_message = "This device don't allow wakeups."
     else:
         hf = Karma()
         try:
@@ -119,7 +119,10 @@ def device_shutdown(request, device_id):
     else:
         hf = Karma()
         try:
-            shutdown(dev.name, request.POST['user'], request.POST['password'], timeout=60)
+            if dev.platform == "linux" :
+                shutdown_nix(dev.name, request.POST['user'], request.POST['password'], timeout=1)
+            else:
+                shutdown_win(dev.name, request.POST['user'], request.POST['password'], timeout=60)
         except Exception as e:
             error_message = e.__unicode__()
             hf.save(dev, 2, -1)

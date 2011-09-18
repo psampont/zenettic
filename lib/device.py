@@ -77,7 +77,7 @@ if os.name == 'nt' :
     ## {{{ http://code.activestate.com/recipes/360649/ (r1)
     # win32shutdown.py
 
-    def shutdown(host=None, user=None, passwrd=None, msg=None, timeout=0, force=1, reboot=False):
+    def shutdown_win(host=None, user=None, passwrd=None, msg=None, timeout=0, force=1, reboot=False):
         """ Shuts down a remote computer, requires NT-BASED OS. """
 
         import win32api
@@ -114,8 +114,8 @@ if os.name == 'nt' :
             win32wnet.WNetCancelConnection2(''.join([r'\\', host]), 0, 0)
 
     ## end of http://code.activestate.com/recipes/360649/ }}}
-else: 
-    def shutdown(hostname, user=None, passwd=None, msg=None, timeout=0, force=False, reboot=False):
+else:
+    def shutdown_win(hostname, user=None, passwd=None, msg=None, timeout=0, force=False, reboot=False):
          """
          Shutdown the device 'hostname'
 
@@ -148,7 +148,6 @@ else:
 ## Shutdown of Linux devices
 ######################################################################
 
-
 def shutdown_nix(hostname, user=None, passwd=None, msg=None, timeout=0, reboot=False):
     """
     Shutdown the device 'hostname'
@@ -162,16 +161,16 @@ def shutdown_nix(hostname, user=None, passwd=None, msg=None, timeout=0, reboot=F
     @param reboot: If True, the device is restarted after the shutdown
     @result: Command line result
     """
-     
+
     command = "ssh %s@%s shutdown" % (user, hostname)
     if reboot :
         command = command + ' -r'
     else:
         command = command + ' -h'
     command = command + " %s" % timeout
-    if msg: 
+    if msg:
         command = command + " " + msg
-    
+
     logging.debug(command)
     subprocess.Popen([command], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).communicate()
 
