@@ -8,10 +8,11 @@ class Device(models.Model):
     MAC = models.CharField(max_length=18, blank=True)
     wakeup = models.BooleanField()
     shutdown = models.BooleanField()
-    
+    platform = models.CharField(max_length=10, blank=True)
+
     def __unicode__(self):
         return self.name
-        
+
     class Meta:
         ordering = ["name"]
 
@@ -22,10 +23,10 @@ class History(models.Model):
     action = models.IntegerField(choices=ACTION_TYPES_CHOICES)
     result = models.IntegerField(choices=RESULTS_CODE, blank=True)
     comment = models.TextField()
-    
+
     def __unicode__(self):
         return self.device.name + ' ' + str(self.timestamp)
-        
+
     class Meta:
         ordering = ["-timestamp"]
         get_latest_by = "timestamp"
