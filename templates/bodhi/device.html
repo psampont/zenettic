@@ -57,6 +57,9 @@
           {% if record.action == 2 %}
             Shutdown
           {% endif %}
+          {% if record.action == 3 %}
+            Reboot
+          {% endif %}
           @ {{ record.timestamp }} -> {{ record.result }}<br />
         {% endfor %}
       {% endif %}

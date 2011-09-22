@@ -137,13 +137,13 @@ else:
          if reboot :
              command = command + ' -r'
          if msg :
-             command = command + ' -C ' + msg
+             command = command + ' -C "' + msg + '"'
          if timeout > 0 :
              command = command + ' -t ' + str(timeout)
          logging.debug(command)
 
          subprocess.Popen([command], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).communicate()
-
+	 
 ######################################################################
 ## Shutdown of Linux devices
 ######################################################################

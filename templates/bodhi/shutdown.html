@@ -15,9 +15,9 @@
         Password : <input type="password" name="password" /><br />
         Reboot :
         {% if reboot %}
-            <input type="checkbox" name="reboot" value=0><br />
+            <input type="checkbox" name="reboot" checked="checked" /><br />
         {% else %}
-            <input type="checkbox" name="reboot" value=1><br />
+            <input type="checkbox" name="reboot" /><br />
         {% endif %}
         <input type="submit" value="Send" />
     </form>

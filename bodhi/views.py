@@ -107,7 +107,7 @@ def device_ask_pass(request, device_id):
     else:
         last = History.objects.filter(device=device_id).latest('timestamp')
 
-        if request.GET["reboot"] == '1' :
+        if 'reboot' in request.GET and  request.GET["reboot"] == '1' :
             reboot = True
         else:
             reboot = False
@@ -124,15 +124,17 @@ def device_shutdown(request, device_id):
         error_message = "This device don't allow the shutdown."
     else:
         hf = Karma()
+        if 'reboot' in request.POST and request.POST['reboot'] == 'on'  :
+            action = 3
+            reboot = True
+        else:
+            action = 2
+            reboot = False
         try:
-            if request.POST['reboot']:
-                action = 3
-            else:
-                action = 2
             if dev.platform == "linux" :
-                shutdown_nix(dev.name, request.POST['user'], request.POST['password'], request.POST['reboot'], timeout=1)
+                shutdown_nix(dev.name, request.POST['user'], request.POST['password'], reboot=reboot, timeout=1)
             else:
-                shutdown_win(dev.name, request.POST['user'], request.POST['password'], request.POST['reboot'], timeout=60)
+                shutdown_win(dev.name, request.POST['user'], request.POST['password'], reboot=reboot, timeout=60)
         except Exception as e:
             error_message = e.__unicode__()
             hf.save(dev, action, -1)

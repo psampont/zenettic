@@ -95,9 +95,9 @@ for device in devices :
             print("Shutdown device : %s" % device.name)
             try :
                 if (device.platform == 'linux') :
-                    shutdown_nix(device.name, 'root', msg="Remote shutdown by bodhi", timeout=1)
+                    shutdown_nix(device.name, 'root', msg="Remote shutdown by Bodhi bots.", timeout=1)
                 else:
-                    shutdown_win(device.name, 'administrator', msg="Remote shutdown by bodhi", timeout=60)
+                    shutdown_win(device.name, 'administrator', msg="Remote shutdown by Bodhi bots.", timeout=60)
             except Exception as e:
                 logging.error("Exception %s" % e)
                 hf.save(device, 2, -1)
@@ -110,9 +110,9 @@ for device in devices :
             print("Reboot device : %s" % device.name)
             try :
                 if (device.platform == 'linux') :
-                    shutdown_nix(device.name, 'root', msg="Remote reboot by bodhi", timeout=1, reboot=True)
+                    shutdown_nix(device.name, 'root', msg="Remote reboot by Bodhi bots.", timeout=1, reboot=True)
                 else:
-                    shutdown_win(device.name, 'administrator', msg="Remote reboot by bodhi", timeout=60, reboot=True)
+                    shutdown_win(device.name, 'administrator', msg="Remote reboot by Bodhi bots.", timeout=60, reboot=True)
             except Exception as e:
                 logging.error("Exception %s" % e)
                 hf.save(device, 3, -1)
