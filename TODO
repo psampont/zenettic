@@ -9,6 +9,7 @@
 0.5 Schedule WOL/SD
 
 -= TO DO list =-
++ Verify that timeout is interger
 + Generate API doc
 ~ enhance the ping
 + Manage IP modification

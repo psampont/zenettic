@@ -13,7 +13,8 @@
     <form action="/bodhi/{{ latest.device.id }}/shutdown" method="post">
         User : <input type="text" name="user" /><br />
         Password : <input type="password" name="password" /><br />
-        Message : <input type="text" name="message" /><br />
+        Message : <input type="text" name="message" size='50'/><br />
+        Timeout : <input type="text" name="timeout" value="5" size='5'> min.<br />
         Reboot :
         {% if reboot %}
             <input type="checkbox" name="reboot" checked="checked" /><br />

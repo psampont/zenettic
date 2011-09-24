@@ -35,16 +35,20 @@
                               <a href="/bodhi/" class="ed_orgs">Bodhi</a>
                           </li>
                           <li class="sep">&nbsp;</li>
+                          <li class="sep">&nbsp;</li>
                           <li class="right">
                              <a href="/help" class="ed_help">Help</a>
                           </li>
                           <li class="sep">&nbsp;</li>
+                          <li class="right">
+                             <a href="/admin" class="ed_admin">Admin</a>
+                          </li>
                         </ul>
                     </div>
                 </div>
                 <div class="content">
                   {% block main %}
-				    {{ text }}
+                    {{ text }}
                   {% endblock %}
                 </div>
     {% if error_message %}
@@ -60,7 +64,7 @@
     {% endif %}
                 <div id="footrowcontent">
                     <div id="footrow">
-					v0.3 unstable
+                    v0.3 unstable
                     </div>
                 </div>
             </div>
