@@ -132,9 +132,11 @@ def device_shutdown(request, device_id):
             reboot = False
         try:
             if dev.platform == "linux" :
-                shutdown_nix(dev.name, request.POST['user'], request.POST['password'], reboot=reboot, timeout=1)
+                shutdown_nix(dev.name, request.POST['user'], request.POST['password'],
+                             msg=request.POST['message'], reboot=reboot, timeout=1)
             else:
-                shutdown_win(dev.name, request.POST['user'], request.POST['password'], reboot=reboot, timeout=60)
+                shutdown_win(dev.name, request.POST['user'], request.POST['password'],
+                             msg=request.POST['message'], reboot=reboot, timeout=60)
         except Exception as e:
             error_message = e.__unicode__()
             hf.save(dev, action, -1)
