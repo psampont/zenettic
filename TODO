@@ -4,16 +4,16 @@
     Basic Cron jobs : Ping each 1/4 hour
 0.3 Add functionalities : Reboot, timeout
     Manager Linux device
-    Generate API doc
 0.4 Calcul of economy
     Interface translation
 0.5 Schedule WOL/SD
 
 -= TO DO list =-
++ Generate API doc
 ~ enhance the ping
 + Manage IP modification
 + Log Who/Which computer has make an action
 + use argparse
 + Page error 404 and 500
 + Review design, make it simplier
-+ Manage difference in timeout for shutdown
++ Manage difference between Linux and windows for timeout parameter in shutdown

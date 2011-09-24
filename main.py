@@ -49,6 +49,9 @@ parser.add_option("-r", "--reboot",
 parser.add_option("-s", "--shutdown",
                   action="store_true", dest="shutdown", default=False,
                   help="Shutdown the device.")
+parser.add_option("--message",
+                  action="store", dest="message",
+                  help="A message")
 parser.add_option("-i", "--history",
                   action="store_true", dest="history", default=False,
                   help="Display history.")
@@ -69,7 +72,7 @@ if options.verbose :
     log_level=logging.DEBUG
 else:
     log_level=logging.WARNING
-logging.basicConfig(format='%(levelname)s:%(asctime)s:%(message)s',
+logging.basicConfig(format='%(levelname)s-%(asctime)s-%(message)s',
             level=log_level,
             datefmt='%H:%M:%S')
 
@@ -95,9 +98,9 @@ for device in devices :
             print("Shutdown device : %s" % device.name)
             try :
                 if (device.platform == 'linux') :
-                    shutdown_nix(device.name, 'root', msg="Remote shutdown by Bodhi bots.", timeout=1)
+                    shutdown_nix(device.name, 'root', msg=options.message, timeout=1)
                 else:
-                    shutdown_win(device.name, 'administrator', msg="Remote shutdown by Bodhi bots.", timeout=60)
+                    shutdown_win(device.name, 'administrator', msg=options.message, timeout=60)
             except Exception as e:
                 logging.error("Exception %s" % e)
                 hf.save(device, 2, -1)
