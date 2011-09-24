@@ -52,6 +52,9 @@ parser.add_option("-s", "--shutdown",
 parser.add_option("--message",
                   action="store", dest="message",
                   help="A message")
+parser.add_option("--timeout",
+                  action="store", dest="timeout",
+                  help="An operation timeout in minute.")
 parser.add_option("-i", "--history",
                   action="store_true", dest="history", default=False,
                   help="Display history.")
@@ -63,6 +66,12 @@ parser.add_option("-v", "--verbose",
 
 if len(args) == 0 :
     parser.error("Please specify a NIC.")
+
+# Default timeout = 5 minutes
+if options.timeout :
+    timeout = options.timeout
+else:
+    timeout = 5
 
 ######################################################################
 ## Logging & History
@@ -98,9 +107,9 @@ for device in devices :
             print("Shutdown device : %s" % device.name)
             try :
                 if (device.platform == 'linux') :
-                    shutdown_nix(device.name, 'root', msg=options.message, timeout=1)
+                    shutdown_nix(device.name, 'root', msg=options.message, timeout=timeout)
                 else:
-                    shutdown_win(device.name, 'administrator', msg=options.message, timeout=60)
+                    shutdown_win(device.name, 'administrator', msg=options.message, timeout=timeout*60)
             except Exception as e:
                 logging.error("Exception %s" % e)
                 hf.save(device, 2, -1)
@@ -113,9 +122,9 @@ for device in devices :
             print("Reboot device : %s" % device.name)
             try :
                 if (device.platform == 'linux') :
-                    shutdown_nix(device.name, 'root', msg=options.message, timeout=1, reboot=True)
+                    shutdown_nix(device.name, 'root', msg=options.message, timeout=timeout, reboot=True)
                 else:
-                    shutdown_win(device.name, 'administrator', msg=options.message, timeout=60, reboot=True)
+                    shutdown_win(device.name, 'administrator', msg=options.message, timeout=timeout*60, reboot=True)
             except Exception as e:
                 logging.error("Exception %s" % e)
                 hf.save(device, 3, -1)
