@@ -113,9 +113,9 @@ for device in devices :
             print("Reboot device : %s" % device.name)
             try :
                 if (device.platform == 'linux') :
-                    shutdown_nix(device.name, 'root', msg="Remote reboot by Bodhi bots.", timeout=1, reboot=True)
+                    shutdown_nix(device.name, 'root', msg=options.message, timeout=1, reboot=True)
                 else:
-                    shutdown_win(device.name, 'administrator', msg="Remote reboot by Bodhi bots.", timeout=60, reboot=True)
+                    shutdown_win(device.name, 'administrator', msg=options.message, timeout=60, reboot=True)
             except Exception as e:
                 logging.error("Exception %s" % e)
                 hf.save(device, 3, -1)
