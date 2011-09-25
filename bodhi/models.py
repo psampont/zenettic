@@ -21,6 +21,7 @@ class History(models.Model):
     device = models.ForeignKey(Device)
     timestamp = models.DateTimeField(auto_now=True)
     action = models.IntegerField(choices=ACTION_TYPES_CHOICES)
+    user = models.TextField(max_length=20)
     result = models.IntegerField(choices=RESULTS_CODE, blank=True)
     comment = models.TextField()
 
@@ -31,6 +32,3 @@ class History(models.Model):
         ordering = ["-timestamp"]
         get_latest_by = "timestamp"
         verbose_name_plural = "History"
-
-
-

@@ -1,5 +1,7 @@
 -= Changelog =-
 0.3
++ Add user field in history
++ Add timeout and message options for shutdown
 + Add reboot function
 + Manage Linux Device
 0.2

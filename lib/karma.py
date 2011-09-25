@@ -18,6 +18,7 @@ from bodhi.models import History
 ######################################################################
 
 import logging
+import os
 
 class NullHandler(logging.Handler):
     def emit(self, record):
@@ -34,15 +35,22 @@ class Karma:
     """
     History database
     """
-    def __init__(self, name=""):
+    def __init__(self, name="", user=None):
         """
         Initialize a history file with interesting information.
 
         @param name: Name of the history
         """
         self.name = name
+        if user == None :
+            if os.name=='nt':
+                self.user = os.getenv("username")
+            else:
+                self.user = os.getlogin()
+        else :
+            self.user = user
 
-    def save(self, device, action, result, comment=None):
+    def save(self, device, action, result, comment=''):
         """
         Write a history record
 
@@ -50,6 +58,7 @@ class Karma:
         @param action: The action effecued on the device
         @param result: The result of the action
         """
-        histo = History(device=device, action=action, result=result, comment=comment)
+        histo = History(device=device, action=action, result=result,
+                        comment=comment, user=self.user)
         histo.save()
 
