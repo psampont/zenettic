@@ -14,7 +14,6 @@
 + Generate API doc
 ~ enhance the ping
 + Manage IP modification
-+ Log Who/Which computer has make an action
 ~ use argparse
 + Page error 404 and 500
 ~ Review design, make it simplier

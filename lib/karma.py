@@ -11,14 +11,15 @@ __docformat__ = 'epytext en'
 ######################################################################
 
 import os
+import logging
+import getpass
 from bodhi.models import History
 
 ######################################################################
 ## Logging
 ######################################################################
 
-import logging
-import os
+
 
 class NullHandler(logging.Handler):
     def emit(self, record):
@@ -43,10 +44,7 @@ class Karma:
         """
         self.name = name
         if user == None :
-            if os.name=='nt':
-                self.user = os.getenv("username")
-            else:
-                self.user = os.getlogin()
+            self.user = getpass.getuser()
         else :
             self.user = user
 
