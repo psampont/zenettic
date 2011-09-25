@@ -15,6 +15,7 @@ VERSION = "0.3"
 from optparse import OptionParser
 import string
 import logging
+import getpass
 
 ######################################################################
 ## Django Initiatlization
@@ -49,6 +50,9 @@ parser.add_option("-r", "--reboot",
 parser.add_option("-s", "--shutdown",
                   action="store_true", dest="shutdown", default=False,
                   help="Shutdown the device.")
+parser.add_option("--username",
+                  action="store", dest="username",
+                  help="Username for shutdown")
 parser.add_option("--message",
                   action="store", dest="message",
                   help="A message")
@@ -73,6 +77,12 @@ if options.timeout :
 else:
     timeout = 5
 
+# Default username is the username of current user
+if options.username :
+    user = options.username
+else :
+    user = getpass.getuser()
+
 ######################################################################
 ## Logging & History
 ######################################################################
@@ -85,7 +95,7 @@ logging.basicConfig(format='%(levelname)s-%(asctime)s-%(message)s',
             level=log_level,
             datefmt='%H:%M:%S')
 
-hf = Karma()
+hf = Karma(user=user)
 
 ######################################################################
 ## Main
@@ -107,9 +117,11 @@ for device in devices :
             print("Shutdown device : %s" % device.name)
             try :
                 if (device.platform == 'linux') :
-                    shutdown_nix(device.name, 'root', msg=options.message, timeout=timeout)
+                    shutdown_nix(device.name, user, msg=options.message,
+                                 timeout=timeout)
                 else:
-                    shutdown_win(device.name, 'administrator', msg=options.message, timeout=timeout*60)
+                    shutdown_win(device.name, user, msg=options.message,
+                                 timeout=timeout*60)
             except Exception as e:
                 logging.error("Exception %s" % e)
                 hf.save(device, 2, -1)
@@ -122,9 +134,11 @@ for device in devices :
             print("Reboot device : %s" % device.name)
             try :
                 if (device.platform == 'linux') :
-                    shutdown_nix(device.name, 'root', msg=options.message, timeout=timeout, reboot=True)
+                    shutdown_nix(device.name, user, msg=options.message,
+                                 timeout=timeout, reboot=True)
                 else:
-                    shutdown_win(device.name, 'administrator', msg=options.message, timeout=timeout*60, reboot=True)
+                    shutdown_win(device.name, user, msg=options.message,
+                                 timeout=timeout*60, reboot=True)
             except Exception as e:
                 logging.error("Exception %s" % e)
                 hf.save(device, 3, -1)
