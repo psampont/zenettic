@@ -114,7 +114,7 @@ for device in devices :
                 logging.error("Exception %s" % e)
                 hf.save(device, 2, -1)
             else:
-                hf.save(device, 2, 0)
+                hf.save(device, 2, 0, options.message)
     elif options.reboot :
         if (device.shutdown == False) :
             logging.error("This device don't allow the shutdown.")
@@ -129,7 +129,7 @@ for device in devices :
                 logging.error("Exception %s" % e)
                 hf.save(device, 3, -1)
             else:
-                hf.save(device, 3, 0)
+                hf.save(device, 3, 0, options.message)
     elif options.wol :
         if (device.wakeup == False) :
             logging.error("This device don't allow the wake up.")

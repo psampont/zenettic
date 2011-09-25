@@ -4,7 +4,8 @@
     Basic Cron jobs : Ping each 1/4 hour
 0.3 Add functionalities : Reboot, timeout
     Manager Linux device
-0.4 Calcul of economy
+0.4 Show history in web interface
+    Calcul of economy
     Interface translation
 0.5 Schedule WOL/SD
 
@@ -14,7 +15,8 @@
 ~ enhance the ping
 + Manage IP modification
 + Log Who/Which computer has make an action
-+ use argparse
+~ use argparse
 + Page error 404 and 500
-+ Review design, make it simplier
+~ Review design, make it simplier
 + Manage difference between Linux and windows for timeout parameter in shutdown
++ Exclude some options from command line : Restrict message parameters to shutdown
