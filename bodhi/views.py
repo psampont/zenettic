@@ -145,7 +145,7 @@ def device_shutdown(request, device_id):
             error_message = e.__unicode__()
             hf.save(dev, action, -1)
         finally:
-            hf.save(dev, action, 0)
+            hf.save(dev, action, 0, request.POST['message'])
     last = History.objects.filter(device=device_id).latest('timestamp')
     his = History.objects.filter(device=device_id)
     return render_to_response('bodhi/device.html',
