@@ -129,7 +129,7 @@ else:
          @result: Command line result
          """
 
-         command = "net rpc shutdown -I %s -U %s" % (hostname, user)
+         command = "net rpc shutdown -I %s -U '%s'" % (hostname, user)
          if passwd :
              command = command + '%' + passwd
          if force :
