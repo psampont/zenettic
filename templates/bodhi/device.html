@@ -5,10 +5,13 @@
         <p>No device in the DB.</p>
       {% else %}
         {% if device.platform == 'linux' %}
-            <img src="/pix/computer_linux.png" align="left" class="photo" alt="computer" height="80" />
-        {% endif %}
-        {% if device.platform == 'win32' %}
-            <img src="/pix/computer_win32.png" align="left" class="photo" alt="computer" height="80" />
+            <img src="/pix/computer_linux.png" align="left" class="photo" alt="PC Linux" height="80" />
+        {% else %}
+          {% if device.platform == 'win32' %}
+            <img src="/pix/computer_win32.png" align="left" class="photo" alt="PC Windows" height="80" />
+          {% else %}
+            <img src="/pix/computer.png" align="left" class="photo" alt="Mac" height="80" />
+          {% endif %}
         {% endif %}
         <h1>{{device.name}}</h1>
         <p>
