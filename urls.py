@@ -21,9 +21,7 @@ urlpatterns = patterns('',
 if DEBUG:
     urlpatterns += patterns('',
         (r'^styles/(?P<path>.*)$', 'django.views.static.serve',
-         {'document_root': 'c:/Users/psa/Projects/zenettic/templates/styles/'}),
-#         {'document_root': '/home/psa/Projects/zenettic/templates/styles/'}),
+         {'document_root': 'templates/styles'}),
         (r'^pix/(?P<path>.*)$', 'django.views.static.serve',
-         {'document_root': 'c:/Users/psa/Projects/zenettic/templates/pix/'}),
-#         {'document_root': '/home/psa/Projects/zenettic/templates/pix/'}),
+         {'document_root': 'templates/pix'}),
     )

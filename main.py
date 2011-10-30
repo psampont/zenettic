@@ -114,19 +114,23 @@ for device in devices :
         if (device.shutdown == False) :
             logging.error("This device don't allow the shutdown.")
         else:
+            if not options.message :
+                message = 'Remote shutdown by %s.' % user
+            else :
+                message = options.message
             print("Shutdown device : %s" % device.name)
             try :
                 if (device.platform == 'linux') :
-                    shutdown_nix(device.name, user, msg=options.message,
+                    shutdown_nix(device.name, user, msg=message,
                                  timeout=timeout)
                 else:
-                    shutdown_win(device.name, user, msg=options.message,
+                    shutdown_win(device.name, user, msg=message,
                                  timeout=timeout*60)
             except Exception as e:
                 logging.error("Exception %s" % e)
                 hf.save(device, 2, -1)
             else:
-                hf.save(device, 2, 0, options.message)
+                hf.save(device, 2, 0, message)
     elif options.reboot :
         if (device.shutdown == False) :
             logging.error("This device don't allow the shutdown.")

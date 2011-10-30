@@ -6,9 +6,18 @@
     <div id="entrycontainer" class="clearfix">
     {% for device in history %}
     <div class="facelist_entry">
-        <a href="{{device.device_id}}/"><img src="/pix/computer.png"
-               align="left" class="photo" alt="" height="80" />
-        <p class="title">{{device.device.name}}</p></a>
+        <a href="{{device.device_id}}/">
+        {% if device.platform == 'linux' %}
+            <img src="/pix/computer_linux.png" align="left" class="photo" alt="PC Linux" height="80" />
+        {% else %}
+          {% if device.platform == 'win32' %}
+            <img src="/pix/computer_win32.png" align="left" class="photo" alt="PC Windows" height="80" />
+          {% else %}
+            <img src="/pix/computer.png" align="left" class="photo" alt="Mac" height="80" />
+          {% endif %}
+        {% endif %}
+          <p class="title">{{device.device.name}}</p>
+        </a>
         {% if device.action == 0 %}
           {% if not device.result %}
             <font color="green">UP</font>
@@ -27,7 +36,7 @@
         {% endif %}
         <br />
         <font size="-1">{{device.timestamp|timesince}}</font><br />
-        <a href="{{device.device_id}}/ping"><img src="/pix/icons/down.svg" alt=" P " height="24" /></a>
+        <a href="{{device.device_id}}/ping"><img src="/pix/icons/down.svg" alt=" P " height="32" /></a>
     </div>
     {% endfor %}
     </div>
