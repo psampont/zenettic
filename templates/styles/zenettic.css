@@ -4,6 +4,7 @@ div#titlerow div.logo span {font-size:26px; font-weight:bold; width:500px; posit
 
 /* show */
 #show { background-color: white; padding : 5px; margin : 5px 10px; }
+.photo { margin-right : 1em }
 
 /* error */
 div#errorheader {background: red }
