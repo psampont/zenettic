@@ -6,7 +6,7 @@ __docformat__ = 'epytext en'
 ######################################################################
 ## Constants
 ######################################################################
-VERSION = "0.4"
+__version__ = "0.4"
 
 ######################################################################
 ## Imports
@@ -36,7 +36,7 @@ from lib.karma import Karma
 ######################################################################
 usage = "usage: %prog [options] NIC"
 description = "Manage a network device"
-version = "%prog " + VERSION
+version = "%prog " + __version__
 parser = OptionParser(usage=usage, version=version, description=description)
 parser.add_option("-p", "--ping",
                   action="store_true", dest="ping", default=True,

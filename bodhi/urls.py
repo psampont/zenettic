@@ -8,4 +8,5 @@ urlpatterns = patterns('bodhi.views',
     (r'^(\d+)/pass$', 'device_ask_pass'),
     (r'^(\d+)/shutdown$', 'device_shutdown'),
     (r'^(\d+)/reboot$', 'device_shutdown'),
+    (r'^(\d+)/imh$', 'render_image'),
 )
