@@ -19,7 +19,7 @@ class Device(models.Model):
 class History(models.Model):
     """ History of a device """
     device = models.ForeignKey(Device)
-    timestamp = models.DateTimeField(auto_now=True)
+    timestamp = models.DateTimeField(auto_now=True, db_index=True)
     action = models.IntegerField(choices=ACTION_TYPES_CHOICES)
     user = models.TextField(max_length=20)
     result = models.IntegerField(choices=RESULTS_CODE, blank=True)
