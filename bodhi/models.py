@@ -9,6 +9,7 @@ class Device(models.Model):
     wakeup = models.BooleanField()
     shutdown = models.BooleanField()
     platform = models.CharField(max_length=10, blank=True)
+    watt = models.IntegerField()
 
     def __unicode__(self):
         return self.name
