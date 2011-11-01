@@ -50,6 +50,7 @@
       {% if not history %}
         <p>No history in the DB.</p>
       {% else %}
+        <h3>10 last actions</h3>
         {% for record in history %}
           {% if record.action == 0 %}
             Ping
@@ -65,6 +66,8 @@
           {% endif %}
           @ {{ record.timestamp }} -> {{ record.result }}<br />
         {% endfor %}
+        <h3>Ping history<h3>
+        {{ img|safe }}
       {% endif %}
   </div>
 {% endblock %}

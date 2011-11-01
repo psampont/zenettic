@@ -99,7 +99,7 @@ class Plot(object):
     def commit(self):
         try:
             self.context.show_page()
-            if self.filename.endswith(".png"):
+            if type(self.filename) in (str, unicode) and self.filename.endswith(".png"):
                 self.surface.write_to_png(self.filename)
             else:
                 self.surface.finish()
