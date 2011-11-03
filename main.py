@@ -145,7 +145,7 @@ for device in devices :
                                  timeout=timeout*60, reboot=True)
             except Exception as e:
                 logging.error("Exception %s" % e)
-                hf.save(device, 3, -1)
+                hf.save(device, 3, 1)
             else:
                 hf.save(device, 3, 0, options.message)
     elif options.wol :
@@ -157,7 +157,7 @@ for device in devices :
                 wake_on_lan(device.MAC)
             except Exception as e:
                 logging.error("Exception %s" % e)
-                hf.save(device, 1, -1)
+                hf.save(device, 1, 1)
             else:
                 hf.save(device, 1, 0)
     elif options.history :
@@ -170,7 +170,7 @@ for device in devices :
             isUp = ping(device.name)
         except Exception as e:
             logging.error("Exception %s" % e)
-            hf.save(device, 0, -1)
+            hf.save(device, 0, 1)
         else:
             hf.save(device, 0, not isUp)
         if isUp :
