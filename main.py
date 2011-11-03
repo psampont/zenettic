@@ -128,7 +128,7 @@ for device in devices :
                                  timeout=timeout*60)
             except Exception as e:
                 logging.error("Exception %s" % e)
-                hf.save(device, 2, -1)
+                hf.save(device, 2, 1)
             else:
                 hf.save(device, 2, 0, message)
     elif options.reboot :
