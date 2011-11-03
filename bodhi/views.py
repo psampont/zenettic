@@ -100,7 +100,7 @@ def device_ping(request, device_id):
       isUp=ping(dev.name)
     except Exception as e :
         error_message = e.__unicode__()
-        hf.save(dev, 0, -1)
+        hf.save(dev, 0, 1)
     else:
         hf.save(dev, 0, not isUp)
     last = History.objects.filter(device=device_id).latest()
@@ -125,7 +125,7 @@ def device_wol(request, device_id):
             wake_on_lan(dev.MAC)
         except Exception as e:
             error_message = e.__unicode__()
-            hf.save(dev, 1, -1)
+            hf.save(dev, 1, 1)
         finally:
             hf.save(dev, 1, 0)
     last = History.objects.filter(device=device_id).latest()
@@ -190,7 +190,7 @@ def device_shutdown(request, device_id):
                              msg=request.POST['message'], reboot=reboot, timeout=timeout*60)
         except Exception as e:
             error_message = e.__unicode__()
-            hf.save(dev, action, -1)
+            hf.save(dev, action, 1)
         finally:
             hf.save(dev, action, 0, request.POST['message'])
     last = History.objects.filter(device=device_id).latest()

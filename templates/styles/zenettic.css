@@ -19,3 +19,5 @@ div.facelist_entry {width:100%;}
 div.facelist_entry {float: left; height:100px;width:360px; border:1px solid #ccc;border-radius:0px 10px 10px 0px;padding:5px;margin:2px; background-color:#fff;}
 div.facelist_entry:hover {float: left; height:100px;width:360px; border:1px solid #ccc;border-radius:0px 10px 10px 0px;padding:5px;margin:2px:background-color:#dddedd; }
 
+div.facelist_entry .title {font-weight:bold;}
+

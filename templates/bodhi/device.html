@@ -22,7 +22,7 @@
           {% if not latest.result %}
             <font color="green">UP</font>
           {% else %}
-            <b>DOWN</b>
+            <font color="blue">DOWN</font>
           {% endif %}
         {% endif %}
         {% if latest.action == 1 %}
@@ -52,19 +52,7 @@
       {% else %}
         <h3>10 last actions</h3>
         {% for record in history %}
-          {% if record.action == 0 %}
-            Ping
-          {% endif %}
-          {% if record.action == 1 %}
-            Wakeonlan
-          {% endif %}
-          {% if record.action == 2 %}
-            Shutdown
-          {% endif %}
-          {% if record.action == 3 %}
-            Reboot
-          {% endif %}
-          @ {{ record.timestamp }} -> {{ record.result }}<br />
+          {{ record.get_action_display }} @ {{ record.timestamp }} -> {{ record.get_result_display }}<br />
         {% endfor %}
         <h3>Ping history<h3>
         {{ img|safe }}
