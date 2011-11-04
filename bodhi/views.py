@@ -27,7 +27,7 @@ def history_img(device_id, days):
   '''
 
   dev = Device.objects.get(pk=device_id)
-  his = History.objects.filter(device=device_id, action=0).values('date').annotate(Count('result')).order_by('-date')[:days]
+  his = History.objects.filter(device=device_id, action=0, user="cron", result=0).values('date').annotate(Count('result')).order_by('-date')[:days]
 
   h_labels = []
   data = {dev.name : []}
@@ -48,7 +48,7 @@ def history_img(device_id, days):
     else :
       color = (0,0,1)
     colors.append(color)
-        
+
   v_bounds = (0, 24)
   v_labels = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"]
 
@@ -179,7 +179,7 @@ def device_shutdown(request, device_id):
             reboot = False
         try:
             if request.POST['timeout'] :
-                timeout = request.POST['timeout']
+                timeout = int(request.POST['timeout'])
             else :
                 timeout = 5
             if dev.platform == "linux" :

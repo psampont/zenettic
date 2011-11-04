@@ -54,8 +54,8 @@
         {% for record in history %}
           {{ record.get_action_display }} @ {{ record.timestamp }} -> {{ record.get_result_display }}<br />
         {% endfor %}
-        <h3>Ping history<h3>
-        {{ img|safe }}
       {% endif %}
+      <h3>Ping history<h3>
+      {{ img|safe }}
   </div>
 {% endblock %}

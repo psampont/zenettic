@@ -57,7 +57,7 @@ parser.add_option("--message",
                   action="store", dest="message",
                   help="A message")
 parser.add_option("--timeout",
-                  action="store", dest="timeout",
+                  action="store", dest="timeout", type="int",
                   help="An operation timeout in minute.")
 parser.add_option("-i", "--history",
                   action="store_true", dest="history", default=False,
