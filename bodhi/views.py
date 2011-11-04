@@ -132,14 +132,19 @@ def device_shutdown(request, device_id):
             reboot = False
         try:
             if request.POST['timeout'] :
-                timeout = request.POST['timeout']
+                timeout = int(request.POST['timeout'])
             else :
                 timeout = 5
+            if request.POST['password'] :
+                password = int(request.POST['password'])
+            else :
+                password = ''
+
             if dev.platform == "linux" :
-                shutdown_nix(dev.name, request.POST['user'], request.POST['password'],
+                shutdown_nix(dev.name, request.POST['user'], password,
                              msg=request.POST['message'], reboot=reboot, timeout=timeout)
             else:
-                shutdown_win(dev.name, request.POST['user'], request.POST['password'],
+                shutdown_win(dev.name, request.POST['user'], password,
                              msg=request.POST['message'], reboot=reboot, timeout=timeout*60)
         except Exception as e:
             error_message = e.__unicode__()

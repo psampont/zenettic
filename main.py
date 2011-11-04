@@ -56,7 +56,7 @@ parser.add_option("--username",
 parser.add_option("--message",
                   action="store", dest="message",
                   help="A message")
-parser.add_option("--timeout",
+parser.add_option("--timeout", type="int",
                   action="store", dest="timeout",
                   help="An operation timeout in minute.")
 parser.add_option("-i", "--history",
