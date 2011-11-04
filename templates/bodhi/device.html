@@ -17,6 +17,7 @@
         <p>
         IP: {{ device.IP }}<br />
         MAC: {{ device.MAC }}
+        Power : {{ device.watt }} Watt
         </p>
         {% if latest.action == 0 %}
           {% if not latest.result %}
