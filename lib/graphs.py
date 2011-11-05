@@ -11,6 +11,8 @@ import cairo
 from cairoplot import CairoPlot
 from bodhi.models import Device, History
 
+from django.db.models import Sum, Count
+
 ######################################################################
 ##
 ######################################################################
