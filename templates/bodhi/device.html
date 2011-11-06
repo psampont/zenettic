@@ -16,8 +16,7 @@
         <h1>{{device.name}}</h1>
         <p>
         IP: {{ device.IP }}<br />
-        MAC: {{ device.MAC }}<br />
-        Power : {{ device.watt }} Watt
+        MAC: {{ device.MAC }}
         </p>
         {% if latest.action == 0 %}
           {% if not latest.result %}
@@ -47,6 +46,10 @@
           {% endif %}
         {% endif %}
       {% endif %}
+      <h2>Power consumption</h2>
+      Power : {{ device.watt }} Watt<br />
+      Yesterday : {{ kwh_day }} Kwh<br />
+      Last week : {{ kwh_week }} Kwh<br />
       <h2>History</h2>
       {% if not history %}
         <p>No history in the DB.</p>
@@ -56,7 +59,7 @@
           {{ record.get_action_display }} @ {{ record.timestamp }} -> {{ record.get_result_display }}<br />
         {% endfor %}
       {% endif %}
-      <h3>Ping history<h3>
+      <h3>Ping history</h3>
       {{ img|safe }}
   </div>
 {% endblock %}

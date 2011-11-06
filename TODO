@@ -6,16 +6,16 @@
     Manager Linux device
 0.4 Show history in web interface
     Calcul of economy
-    Interface translation
+    Web interface translation
 0.5 Schedule WOL/SD
+    Calculate Load Average
 
 -= TO DO list =-
-+ Verify that timeout is interger
 + Generate API doc
 ~ enhance the ping
 + Manage IP modification
-~ use argparse
 + Page error 404 and 500
 ~ Review design, make it simplier
+~ use argparse
 + Manage difference between Linux and windows for timeout parameter in shutdown
 + Exclude some options from command line : Restrict message parameters to shutdown

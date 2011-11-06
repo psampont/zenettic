@@ -16,6 +16,8 @@ from lib.device import wake_on_lan, shutdown_win, shutdown_nix, ping
 from lib.karma import Karma
 from lib.graphs import history_img
 
+from datetime import datetime, timedelta
+
 ######################################################################
 ## Views
 ######################################################################
@@ -38,9 +40,16 @@ def device(request, device_id):
     dev = get_object_or_404(Device, pk=device_id)
     last = History.objects.filter(device=device_id).latest()
     his = History.objects.filter(device=device_id).exclude(action=0)[0:10]
+    power = Device.objects.get(pk=device_id).watt
+    today = datetime.today()
+    kwh_day = History.objects.filter(device=device_id, action=0, user="cron", result=0, date=today).aggregate(Count('result'))["result__count"] * power / 1000.0
+    week = datetime.today() - timedelta(days=7)
+    kwh_week = History.objects.filter(device=device_id, action=0, user="cron", result=0, date__gt=week).aggregate(Count('result'))["result__count"] * power / 1000.0
     img = history_img(device_id, 10)
     return render_to_response('bodhi/device.html',
                                 {'device': dev,
+                                'kwh_day' : kwh_day,
+                                'kwh_week': kwh_week,
                                 'history' : his,
                                 'img' : img,
                                 'latest' : last})

@@ -25,7 +25,7 @@ class History(models.Model):
     action = models.IntegerField(choices=ACTION_TYPES_CHOICES)
     user = models.TextField(max_length=20)
     result = models.IntegerField(choices=RESULTS_CODE, blank=True)
-    comment = models.TextField()
+    comment = models.TextField(blank=True)
 
     def __unicode__(self):
         return self.device.name + ' ' + str(self.timestamp)
@@ -34,3 +34,9 @@ class History(models.Model):
         ordering = ["-timestamp"]
         get_latest_by = "timestamp"
         verbose_name_plural = "History"
+
+
+class Parameter(models.Model):
+    """ Application parameters """
+    kwh_cost = models.FloatField(null=True)
+    kwh_CO2 = models.FloatField(null=True)
