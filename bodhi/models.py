@@ -9,6 +9,7 @@ class Device(models.Model):
     wakeup = models.BooleanField()
     shutdown = models.BooleanField()
     platform = models.CharField(max_length=10, blank=True)
+    watt = models.IntegerField()
 
     def __unicode__(self):
         return self.name
@@ -19,11 +20,12 @@ class Device(models.Model):
 class History(models.Model):
     """ History of a device """
     device = models.ForeignKey(Device)
+    date = models.DateField(auto_now=True, db_index=True)
     timestamp = models.DateTimeField(auto_now=True, db_index=True)
     action = models.IntegerField(choices=ACTION_TYPES_CHOICES)
     user = models.TextField(max_length=20)
     result = models.IntegerField(choices=RESULTS_CODE, blank=True)
-    comment = models.TextField()
+    comment = models.TextField(blank=True)
 
     def __unicode__(self):
         return self.device.name + ' ' + str(self.timestamp)
@@ -32,3 +34,9 @@ class History(models.Model):
         ordering = ["-timestamp"]
         get_latest_by = "timestamp"
         verbose_name_plural = "History"
+
+
+class Parameter(models.Model):
+    """ Application parameters """
+    kwh_cost = models.FloatField(null=True)
+    kwh_CO2 = models.FloatField(null=True)

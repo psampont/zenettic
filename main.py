@@ -6,7 +6,7 @@ __docformat__ = 'epytext en'
 ######################################################################
 ## Constants
 ######################################################################
-VERSION = "0.3"
+__version__ = "0.4"
 
 ######################################################################
 ## Imports
@@ -36,7 +36,7 @@ from lib.karma import Karma
 ######################################################################
 usage = "usage: %prog [options] NIC"
 description = "Manage a network device"
-version = "%prog " + VERSION
+version = "%prog " + __version__
 parser = OptionParser(usage=usage, version=version, description=description)
 parser.add_option("-p", "--ping",
                   action="store_true", dest="ping", default=True,
@@ -56,8 +56,8 @@ parser.add_option("--username",
 parser.add_option("--message",
                   action="store", dest="message",
                   help="A message")
-parser.add_option("--timeout", type="int",
-                  action="store", dest="timeout",
+parser.add_option("--timeout",
+                  action="store", dest="timeout", type="int",
                   help="An operation timeout in minute.")
 parser.add_option("-i", "--history",
                   action="store_true", dest="history", default=False,

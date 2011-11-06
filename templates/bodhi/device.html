@@ -46,13 +46,20 @@
           {% endif %}
         {% endif %}
       {% endif %}
+      <h2>Power consumption</h2>
+      Power : {{ device.watt }} Watt<br />
+      Yesterday : {{ kwh_day }} Kwh<br />
+      Last week : {{ kwh_week }} Kwh<br />
       <h2>History</h2>
       {% if not history %}
         <p>No history in the DB.</p>
       {% else %}
+        <h3>10 last actions</h3>
         {% for record in history %}
           {{ record.get_action_display }} @ {{ record.timestamp }} -> {{ record.get_result_display }}<br />
         {% endfor %}
       {% endif %}
+      <h3>Ping history</h3>
+      {{ img|safe }}
   </div>
 {% endblock %}
