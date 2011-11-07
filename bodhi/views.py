@@ -42,12 +42,15 @@ def device(request, device_id):
     his = History.objects.filter(device=device_id).exclude(action=0)[0:10]
     power = Device.objects.get(pk=device_id).watt
     today = datetime.today()
-    kwh_day = History.objects.filter(device=device_id, action=0, user="cron", result=0, date=today).aggregate(Count('result'))["result__count"] * power / 1000.0
+    kwh_today = History.objects.filter(device=device_id, action=0, user="cron", result=0, date=today).aggregate(Count('result'))["result__count"] * power / 1000.0
+    yesterday = today - timedelta(days=1)
+    kwh_day = History.objects.filter(device=device_id, action=0, user="cron", result=0, date=yesterday).aggregate(Count('result'))["result__count"] * power / 1000.0
     week = datetime.today() - timedelta(days=7)
     kwh_week = History.objects.filter(device=device_id, action=0, user="cron", result=0, date__gt=week).aggregate(Count('result'))["result__count"] * power / 1000.0
     img = history_img(device_id, 10)
     return render_to_response('bodhi/device.html',
                                 {'device': dev,
+                                'kwh_today' : kwh_today,
                                 'kwh_day' : kwh_day,
                                 'kwh_week': kwh_week,
                                 'history' : his,
@@ -119,12 +122,24 @@ def device_ask_pass(request, device_id):
                                 'error_message' : error_message})
     else:
         last = History.objects.filter(device=device_id).latest()
+        power = Device.objects.get(pk=device_id).watt
+        today = datetime.today()
+        kwh_today = History.objects.filter(device=device_id, action=0, user="cron", result=0, date=today).aggregate(Count('result'))["result__count"] * power / 1000.0
+        yesterday = today - timedelta(days=1)
+        kwh_day = History.objects.filter(device=device_id, action=0, user="cron", result=0, date=yesterday).aggregate(Count('result'))["result__count"] * power / 1000.0
+        week = datetime.today() - timedelta(days=7)
+        kwh_week = History.objects.filter(device=device_id, action=0, user="cron", result=0, date=week).aggregate(Count('result'))["result__count"] * power / 1000.0
+        kwh_gain = kwh_week - kwh_day
 
         if 'reboot' in request.GET and  request.GET["reboot"] == '1' :
             reboot = True
         else:
             reboot = False
         return render_to_response('bodhi/shutdown.html', {'latest': last,
+                                                          'kwh_today' : kwh_today,
+                                                          'kwh_day' : kwh_day,
+                                                          'kwh_week': kwh_week,
+                                                          'kwh_gain': kwh_gain,
                                                           'reboot': reboot})
 
 def device_shutdown(request, device_id):

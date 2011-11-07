@@ -6,6 +6,7 @@
     Manager Linux device
 0.4 Show history in web interface
     Calcul of economy
+    Schedule ping after shutdown/wakeup
     Web interface translation
 0.5 Schedule WOL/SD
     Calculate Load Average
@@ -15,6 +16,7 @@
 ~ enhance the ping
 + Manage IP modification
 + Page error 404 and 500
+~ Rewrite some queries
 ~ Review design, make it simplier
 ~ use argparse
 + Manage difference between Linux and windows for timeout parameter in shutdown
