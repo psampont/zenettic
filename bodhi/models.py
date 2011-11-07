@@ -35,8 +35,3 @@ class History(models.Model):
         get_latest_by = "timestamp"
         verbose_name_plural = "History"
 
-
-class Parameter(models.Model):
-    """ Application parameters """
-    kwh_cost = models.FloatField(null=True)
-    kwh_CO2 = models.FloatField(null=True)
