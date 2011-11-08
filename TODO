@@ -21,3 +21,4 @@
 ~ use argparse
 + Manage difference between Linux and windows for timeout parameter in shutdown
 + Exclude some options from command line : Restrict message parameters to shutdown
++ Import devices from other databases

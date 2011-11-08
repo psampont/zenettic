@@ -129,7 +129,7 @@ def device_ask_pass(request, device_id):
         kwh_day = History.objects.filter(device=device_id, action=0, user="cron", result=0, date=yesterday).aggregate(Count('result'))["result__count"] * power / 1000.0
         week = datetime.today() - timedelta(days=7)
         kwh_week = History.objects.filter(device=device_id, action=0, user="cron", result=0, date=week).aggregate(Count('result'))["result__count"] * power / 1000.0
-        kwh_gain = kwh_week - kwh_day
+        kwh_gain = kwh_week - kwh_today
 
         if 'reboot' in request.GET and  request.GET["reboot"] == '1' :
             reboot = True
@@ -164,7 +164,7 @@ def device_shutdown(request, device_id):
             else :
                 timeout = 5
             if request.POST['password'] :
-                password = int(request.POST['password'])
+                password = request.POST['password']
             else :
                 password = ''
 
