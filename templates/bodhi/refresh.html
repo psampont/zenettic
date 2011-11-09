@@ -1,16 +1,13 @@
 {% extends "main.html" %}
 {% block head %}
     <title>Zen&TIC - Bodhi</title>
-    <meta http-equiv="refresh" content="3600">
+    <meta http-equiv="refresh" content="180;url='/bodhi/{{device.id}}/ping">
 {% endblock %}
 {% block main %}
-  {% if not history %}
-    <p>No device in the DB.</p>
-  {% else %}
-    <div id="entrycontainer" class="clearfix">
-    {% for device in history %}
-    <div class="facelist_entry">
-        <a href="{{device.device_id}}/">
+  <div id="show">
+      {% if not device %}
+        <p>No device in the DB.</p>
+      {% else %}
         {% if device.platform == 'linux' %}
             <img src="/pix/computer_linux.png" align="left" class="photo" alt="PC Linux" height="80" />
         {% else %}
@@ -20,29 +17,34 @@
             <img src="/pix/computer.png" align="left" class="photo" alt="Mac" height="80" />
           {% endif %}
         {% endif %}
-          <p class="title">{{device.device.name}}</p>
-        </a>
-        {% if device.action == 0 %}
-          {% if not device.result %}
+        <h1><a href="/bodhi/{{device.id}}/">{{device.name}}</a></h1>
+        <p>
+        IP: {{ device.IP }}<br />
+        MAC: {{ device.MAC }}
+        </p>
+        <center>
+        <font size="+1">
+        {% if latest.action == 0 %}
+          {% if not latest.result %}
             <font color="green">UP</font>
           {% else %}
             <font color="blue">DOWN</font>
           {% endif %}
         {% endif %}
-        {% if device.action == 1 %}
+        {% if latest.action == 1 %}
             Wake UP...
         {% endif %}
-        {% if device.action == 2 %}
+        {% if latest.action == 2 %}
             Shutdown...
         {% endif %}
-        {% if device.action == 3 %}
+        {% if latest.action == 3 %}
             Rebooting...
         {% endif %}
+        </font>
         <br />
-        <font size="-1">{{device.timestamp|timesince}}</font><br />
-        <a href="{{device.device_id}}/ping"><img src="/pix/icons/down.svg" alt=" P " height="32" /></a>
-    </div>
-    {% endfor %}
-    </div>
-  {% endif %}
+        <font size="-1">{{latest.timestamp}}</font><br />
+        Ping machine in 180 seconds...
+        </center>
+      {% endif %}
+  </div>
 {% endblock %}

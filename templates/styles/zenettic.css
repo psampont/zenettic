@@ -21,3 +21,7 @@ div.facelist_entry:hover {float: left; height:100px;width:360px; border:1px soli
 
 div.facelist_entry .title {font-weight:bold;}
 
+a.ed_computer {
+    background: transparent url(../pix/icons/computer.png) 4px 4px no-repeat;
+}
+

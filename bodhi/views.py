@@ -8,7 +8,7 @@ __docformat__ = 'epytext en'
 ######################################################################
 from bodhi.models import Device, History
 from django.http import HttpResponse
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, redirect
 from bodhi.choices import *
 from django.db.models import Sum, Count
 
@@ -39,7 +39,7 @@ def device(request, device_id):
     '''
     dev = get_object_or_404(Device, pk=device_id)
     last = History.objects.filter(device=device_id).latest()
-    his = History.objects.filter(device=device_id).exclude(action=0)[0:10]
+    his = History.objects.filter(device=device_id).exclude(user='cron')[0:10]
     power = Device.objects.get(pk=device_id).watt
     today = datetime.today()
     kwh_today = History.objects.filter(device=device_id, action=0, user="cron", result=0, date=today).aggregate(Count('result'))["result__count"] * power / 1000.0
@@ -72,13 +72,7 @@ def device_ping(request, device_id):
         hf.save(dev, 0, 1)
     else:
         hf.save(dev, 0, not isUp)
-    last = History.objects.filter(device=device_id).latest()
-    his = History.objects.filter(device=device_id)
-    return render_to_response('bodhi/device.html',
-                                {'device': dev,
-                                 'history' : his,
-                                'latest' : last,
-                                'error_message' : error_message})
+    return redirect(device, device_id)
 
 def device_wol(request, device_id):
     '''
@@ -98,10 +92,8 @@ def device_wol(request, device_id):
         finally:
             hf.save(dev, 1, 0)
     last = History.objects.filter(device=device_id).latest()
-    his = History.objects.filter(device=device_id)
-    return render_to_response('bodhi/device.html',
+    return render_to_response('bodhi/refresh.html',
                                 {'device': dev,
-                                'history' : his,
                                 'latest' : last,
                                 'error_message' : error_message})
 
@@ -114,10 +106,8 @@ def device_ask_pass(request, device_id):
     if dev.shutdown == False :
         error_message = "This device don't allow the shutdown."
         last = History.objects.filter(device=device_id).latest()
-        his = History.objects.filter(device=device_id)
-        return render_to_response('bodhi/device.html',
+        return render_to_response('bodhi/refresh.html',
                                 {'device': dev,
-                                'history' : his,
                                 'latest' : last,
                                 'error_message' : error_message})
     else:
@@ -180,10 +170,8 @@ def device_shutdown(request, device_id):
         finally:
             hf.save(dev, action, 0, request.POST['message'])
     last = History.objects.filter(device=device_id).latest()
-    his = History.objects.filter(device=device_id)
-    return render_to_response('bodhi/device.html',
+    return render_to_response('bodhi/refresh.html',
                                 {'device': dev,
-                                'history' : his,
                                 'latest' : last,
                                 'error_message' : error_message})
 

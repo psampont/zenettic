@@ -2,12 +2,14 @@
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
-    <title>Zen&TIC - Bodhi</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="description" content="Manage remote computer"/>
     <link rel="stylesheet" type="text/css" href="/styles/styles.css" />
     <link rel="stylesheet" type="text/css" href="/styles/zenettic.css" />
     <link rel="shortcut icon" href="/pix/icons/favicon.png" />
+  {% block head %}
+    <title>Zen&TIC - Bodhi</title>
+  {% endblock %}
 </head>
 <body>
     <script>
@@ -32,7 +34,7 @@
                               <a href="/" class="ed_home">Home</a>
                           </li>
                           <li>
-                              <a href="/bodhi/" class="ed_orgs">Bodhi</a>
+                              <a href="/bodhi/" class="ed_computer">Bodhi</a>
                           </li>
                           <li class="sep">&nbsp;</li>
                           <li class="sep">&nbsp;</li>
