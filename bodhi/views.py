@@ -33,6 +33,22 @@ def index(request):
         history.append(record)
     return render_to_response('bodhi/list.html', {'history': history})
 
+def ping_all(request):
+    '''
+    Ping all devices
+    '''
+
+    devices = Device.objects.all().order_by('name')
+    for dev in devices :
+        hf = Karma()
+        try:
+          isUp=ping(dev.name)
+        except Exception as e :
+            hf.save(dev, 0, 1)
+        else:
+            hf.save(dev, 0, not isUp)
+    return redirect(index)
+
 def device(request, device_id):
     '''
     Display a device

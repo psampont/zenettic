@@ -2,6 +2,7 @@ from django.conf.urls.defaults import *
 
 urlpatterns = patterns('bodhi.views',
     (r'^$', 'index'),
+    (r'^pingall$', 'ping_all'),
     (r'^(\d+)/$', 'device'),
     (r'^(\d+)/ping$', 'device_ping'),
     (r'^(\d+)/wol$', 'device_wol'),
