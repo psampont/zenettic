@@ -10,7 +10,7 @@ from bodhi.models import Device, History
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from bodhi.choices import *
-from django.db.models import Sum, Count
+from django.db.models import Count
 
 from lib.device import wake_on_lan, shutdown_win, shutdown_nix, ping
 from lib.karma import Karma

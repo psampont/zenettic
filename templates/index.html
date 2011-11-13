@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+{% load i18n %}
+{% block head %}
+    <title>Zen & TIC - Bodhi</title>
+    <meta http-equiv="refresh" content="3600">
+{% endblock %}
+{% block main %}
+    <div id="entrycontainer" class="clearfix">
+      <div class="facelist_entry">
+        <a href="bodhi/">
+            <img src="/pix/computer.png" align="left" class="photo" alt="Mac" height="80" />
+          <p class="title">Bodhi</p>
+        </a>
+        {% trans "Nb. Computers" %} : {{nb}}<br />
+        {% trans "Computers ON" %} : {{nb_ON}}<br />
+        {% trans "Computers OFF" %} : {{nb_OFF}}
+      </div>
+    </div>
+{% endblock %}
+
