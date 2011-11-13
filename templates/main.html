@@ -1,3 +1,4 @@
+{% load i18n %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
@@ -8,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="/styles/zenettic.css" />
     <link rel="shortcut icon" href="/pix/icons/favicon.png" />
   {% block head %}
-    <title>Zen&TIC - Bodhi</title>
+    <title>Zenettic - Bodhi</title>
   {% endblock %}
 </head>
 <body>
@@ -21,7 +22,7 @@
     <div id="titlerow">
         <div class="logo">
             <a href="/"><img src="/pix/logo.png"></a>
-            <span>Bodhi</span>
+            <span>Zen & TIC - Bodhi</span>
         </div>
     </div>
     <div id="toolbartop">
@@ -31,7 +32,7 @@
                     <div id="toolbarcontent">
                         <ul>
                           <li>
-                              <a href="/" class="ed_home">Home</a>
+                              <a href="/" class="ed_home">{% trans "Home" %}</a>
                           </li>
                           <li>
                               <a href="/bodhi/" class="ed_computer">Bodhi</a>
@@ -39,11 +40,11 @@
                           <li class="sep">&nbsp;</li>
                           <li class="sep">&nbsp;</li>
                           <li class="right">
-                             <a href="/help" class="ed_help">Help</a>
+                             <a href="/help" class="ed_help">{% trans "Help" %}</a>
                           </li>
                           <li class="sep">&nbsp;</li>
                           <li class="right">
-                             <a href="/admin" class="ed_admin">Admin</a>
+                             <a href="/admin" class="ed_admin">{% trans "Admin" %}</a>
                           </li>
                         </ul>
                     </div>
@@ -56,7 +57,7 @@
     {% if error_message %}
     <div id="errorcontainer">
       <div id="errortop">
-        <div id="errorheader">ERROR</div>
+        <div id="errorheader">{% trans "ERROR" %}</div>
         <div id="errorcontent">
             {{ error_message }}
         </div>

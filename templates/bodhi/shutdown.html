@@ -1,39 +1,40 @@
 {% extends "main.html" %}
+{% load i18n %}
 {% block main %}
   {% if not latest %}
     <p>Device not in the DB.</p>
   {% else %}
     <img src="/pix/computer.png" align="left" alt="computer" height="80" />
     <h1>{{latest.device.name}}</h1>
-    <h3>Comsumption</h3>
-    Today : {{ kwh_today }} Kwh<br />
-    Day - 1 : {{ kwh_day }} Kwh<br />
-    Day - 7 : {{ kwh_week }} Kwh<br />
-    Gain : {{ kwh_gain }} Kwh<br />
+    <h3>{% trans "Comsumption" %}</h3>
+    {% trans "Today" %} : {{ kwh_today }} Kwh<br />
+    {% trans "Day" %} - 1 : {{ kwh_day }} Kwh<br />
+    {% trans "Day" %} - 7 : {{ kwh_week }} Kwh<br />
+    {% trans "Gain" %} : {{ kwh_gain }} Kwh<br />
     <br />
     <h3>
       {% if reboot %}
-        Reboot ?
+        {% trans "Reboot ?" %}
       {% else %}
-        Shutdown ?
+        {% trans "Shutdown ?" %}
       {% endif %}
     </h3>
     <form action="/bodhi/{{ latest.device.id }}/shutdown" method="post">
       <table>
       <tr>
-        <td>User</td><td><input type="text" name="user" /></td>
+        <td>{% trans "User" %}</td><td><input type="text" name="user" /></td>
       </tr>
       <tr>
-        <td>Password</td><td><input type="password" name="password" /></td>
+        <td>{% trans "Password" %}</td><td><input type="password" name="password" /></td>
       </tr>
       <tr>
-        <td>Message</td><td><input type="text" name="message" size='50'/></td>
+        <td>{% trans "Message" %}</td><td><input type="text" name="message" size='50'/></td>
       </tr>
       <tr>
-        <td>Timeout</td><td><input type="text" name="timeout" value="5" size='5'> min.</td>
+        <td>{% trans "Timeout" %}</td><td><input type="text" name="timeout" value="5" size='5'> min.</td>
       </tr>
       <tr>
-        <td>Reboot</td><td>
+        <td>{% trans "Reboot" %}</td><td>
         {% if reboot %}
             <input type="checkbox" name="reboot" checked="checked" />
         {% else %}

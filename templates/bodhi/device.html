@@ -1,8 +1,9 @@
 {% extends "main.html" %}
+{% load i18n %}
 {% block main %}
   <div id="show">
       {% if not device %}
-        <p>No device in the DB.</p>
+        <p>{% trans "No device in the DB." %}</p>
       {% else %}
         {% if device.platform == 'linux' %}
             <img src="/pix/computer_linux.png" align="left" class="photo" alt="PC Linux" height="80" />
@@ -20,19 +21,19 @@
         </p>
         {% if latest.action == 0 %}
           {% if not latest.result %}
-            <font color="green">UP</font>
+            <font color="green">{% trans "UP" %}</font>
           {% else %}
-            <font color="blue">DOWN</font>
+            <font color="blue">{% trans "DOWN" %}</font>
           {% endif %}
         {% endif %}
         {% if latest.action == 1 %}
-            Wake UP...
+            {% trans "Wake UP" %}...
         {% endif %}
         {% if latest.action == 2 %}
-            Shutdown...
+            {% trans "Shutdown" %}...
         {% endif %}
         {% if latest.action == 3 %}
-            Rebooting...
+            {% trans "Rebooting" %}...
         {% endif %}
         <br />
         <font size="-1">{{latest.timestamp}}</font><br />
@@ -46,21 +47,21 @@
           {% endif %}
         {% endif %}
       {% endif %}
-      <h2>Power consumption</h2>
-      Power : {{ device.watt }} Watt<br />
-      Today : {{ kwh_today }} Kwh<br />
-      Yesterday : {{ kwh_day }} Kwh<br />
-      Last week : {{ kwh_week }} Kwh<br />
-      <h2>History</h2>
+      <h2>{% trans "Power consumption" %}</h2>
+      {% trans "Power" %} : {{ device.watt }} Watt<br />
+      {% trans "Today" %} : {{ kwh_today }} Kwh<br />
+      {% trans "Yesterday" %} : {{ kwh_day }} Kwh<br />
+      {% trans "Last week" %} : {{ kwh_week }} Kwh<br />
+      <h2>{% trans "History" %}</h2>
       {% if not history %}
-        <p>No history in the DB.</p>
+        <p>{% trans "No history in the DB." %}</p>
       {% else %}
-        <h3>10 last actions</h3>
+        <h3>{% trans "10 last actions" %}</h3>
         {% for record in history %}
           {{ record.get_action_display }} @ {{ record.timestamp }} -> {{ record.get_result_display }}<br />
         {% endfor %}
       {% endif %}
-      <h3>Ping history</h3>
+      <h3>{% trans "Ping history" %}</h3>
       {{ img|safe }}
   </div>
 {% endblock %}

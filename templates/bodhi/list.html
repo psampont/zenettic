@@ -1,11 +1,12 @@
 {% extends "main.html" %}
+{% load i18n %}
 {% block head %}
-    <title>Zen&TIC - Bodhi</title>
+    <title>Zen & TIC - Bodhi</title>
     <meta http-equiv="refresh" content="3600">
 {% endblock %}
 {% block main %}
   {% if not history %}
-    <p>No device in the DB.</p>
+    <p>{% trans "No device in the DB." %}</p>
   {% else %}
     <div id="entrycontainer" class="clearfix">
     {% for device in history %}
@@ -24,19 +25,19 @@
         </a>
         {% if device.action == 0 %}
           {% if not device.result %}
-            <font color="green">UP</font>
+            <font color="green">{% trans "UP" %}</font>
           {% else %}
-            <font color="blue">DOWN</font>
+            <font color="blue">{% trans "DOWN" %}</font>
           {% endif %}
         {% endif %}
         {% if device.action == 1 %}
-            Wake UP...
+            {% trans "Wake UP" %} ...
         {% endif %}
         {% if device.action == 2 %}
-            Shutdown...
+            {% trans "Shutdown" %}...
         {% endif %}
         {% if device.action == 3 %}
-            Rebooting...
+            {% trans "Rebooting" %}...
         {% endif %}
         <br />
         <font size="-1">{{device.timestamp|timesince}}</font><br />

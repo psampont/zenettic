@@ -1,4 +1,5 @@
 {% extends "main.html" %}
+{% load i18n %}
 {% block head %}
     <title>Zen&TIC - Bodhi</title>
     <meta http-equiv="refresh" content="180;url='/bodhi/{{device.id}}/ping">
@@ -6,7 +7,7 @@
 {% block main %}
   <div id="show">
       {% if not device %}
-        <p>No device in the DB.</p>
+        <p>{% trans "No device in the DB." %}</p>
       {% else %}
         {% if device.platform == 'linux' %}
             <img src="/pix/computer_linux.png" align="left" class="photo" alt="PC Linux" height="80" />
@@ -26,24 +27,24 @@
         <font size="+1">
         {% if latest.action == 0 %}
           {% if not latest.result %}
-            <font color="green">UP</font>
+            <font color="green">{% trans "UP" %}</font>
           {% else %}
-            <font color="blue">DOWN</font>
+            <font color="blue">{% trans "DOWN" %}</font>
           {% endif %}
         {% endif %}
         {% if latest.action == 1 %}
-            Wake UP...
+            {% trans "Wake UP" %}...
         {% endif %}
         {% if latest.action == 2 %}
-            Shutdown...
+            {% trans "Shutdown" %}...
         {% endif %}
         {% if latest.action == 3 %}
-            Rebooting...
+            {% trans "Rebooting" %}...
         {% endif %}
         </font>
         <br />
         <font size="-1">{{latest.timestamp}}</font><br />
-        Ping machine in 180 seconds...
+        {% trans "Ping machine in 180 seconds..." %}
         </center>
       {% endif %}
   </div>
