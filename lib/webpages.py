@@ -8,7 +8,7 @@ __docformat__ = 'epytext en'
 ######################################################################
 from django.shortcuts import render_to_response, redirect
 from bodhi.models import Device, History
-from django.db.models import Count
+from django.db.models import Count, Max
 from datetime import datetime, timedelta
 
 ######################################################################
@@ -21,8 +21,10 @@ def homepage(request):
     '''
     nb = Device.objects.all().aggregate(Count('id'))["id__count"]
     today = datetime.today()
-    nb_ON = len(History.objects.filter(action=0, result=0, date=today).order_by('device').values('device').distinct())
-    nb_OFF = len(History.objects.filter(action=0, result=1, date=today).order_by('device').values('device').distinct())
+    dev = Device.objects.annotate(time_max=Max('history__timestamp'))
+    his = History.objects.filter(action=0, timestamp__in=[d.time_max for d in dev], date=today)
+    nb_ON = len(his.filter(result=0))
+    nb_OFF = len(his.filter(result=1))
     return render_to_response('index.html', {'nb': nb,
                                              'nb_ON' : nb_ON,
                                              'nb_OFF' : nb_OFF
