@@ -11,6 +11,7 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from bodhi.choices import *
 from django.db.models import Count
+from django.core.exceptions import ObjectDoesNotExist
 
 from lib.device import wake_on_lan, shutdown_win, shutdown_nix, ping
 from lib.karma import Karma
@@ -29,8 +30,11 @@ def index(request):
     devices = Device.objects.all().order_by('name')
     history = []
     for device in devices :
-        record = History.objects.filter(device=device).latest()
-        history.append(record)
+        try:
+          record = History.objects.filter(device=device).latest()
+          history.append(record)
+        except ObjectDoesNotExist :
+          pass
     return render_to_response('bodhi/list.html', {'history': history})
 
 def ping_all(request):
