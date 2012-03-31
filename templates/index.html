@@ -9,11 +9,11 @@
       <div class="facelist_entry">
         <a href="bodhi/">
             <img src="/pix/computer.png" align="left" class="photo" alt="Mac" height="80" />
-            <h1>Bodhi</h1>
+            <h1>{% trans "Network" %}</h1>
         </a>
-        {% trans "Nb. Computers" %} : {{nb}} <a href="bodhi/pingall"><img src="/pix/icons/down.svg" alt=" P " height="32" title="{% trans 'Ping all devices' %}" /></a><br />
         {% trans "Computers ON" %} : {{nb_ON}}<br />
-        {% trans "Computers OFF" %} : {{nb_OFF}}
+        {% trans "Computers OFF" %} : {{nb_OFF}}<br />
+        {% trans "Computers" %} : {{nb}} <a href="bodhi/pingall"><img src="/pix/icons/down.svg" align="absmiddle" alt=" P " height="32" title="{% trans 'Ping all devices' %}" /></a>
       </div>
     </div>
 {% endblock %}

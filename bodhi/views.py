@@ -18,6 +18,7 @@ from lib.karma import Karma
 from lib.graphs import history_img
 
 from datetime import datetime, timedelta
+from threading import Timer
 
 ######################################################################
 ## Views
@@ -111,6 +112,8 @@ def device_wol(request, device_id):
             hf.save(dev, 1, 1)
         finally:
             hf.save(dev, 1, 0)
+            t = Timer(180.0, device_ping, (request, device_id))
+            t.start()
     last = History.objects.filter(device=device_id).latest()
     return render_to_response('bodhi/refresh.html',
                                 {'device': dev,
@@ -189,6 +192,8 @@ def device_shutdown(request, device_id):
             hf.save(dev, action, 1)
         finally:
             hf.save(dev, action, 0, request.POST['message'])
+            t = Timer(180.0, device_ping, (request, device_id))
+            t.start()
     last = History.objects.filter(device=device_id).latest()
     return render_to_response('bodhi/refresh.html',
                                 {'device': dev,
