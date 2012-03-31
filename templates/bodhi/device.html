@@ -21,9 +21,9 @@
         </p>
         {% if latest.action == 0 %}
           {% if not latest.result %}
-            <font color="green">{% trans "UP" %}</font>
+            <font color="green">{% trans "ON" %}</font>
           {% else %}
-            <font color="blue">{% trans "DOWN" %}</font>
+            <font color="blue">{% trans "OFF" %}</font>
           {% endif %}
         {% endif %}
         {% if latest.action == 1 %}

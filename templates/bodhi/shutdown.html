@@ -6,7 +6,7 @@
   {% else %}
     <img src="/pix/computer.png" align="left" alt="computer" height="80" />
     <h1>{{latest.device.name}}</h1>
-    <h3>{% trans "Comsumption" %}</h3>
+    <h3>{% trans "Consumption" %}</h3>
     {% trans "Today" %} : {{ kwh_today }} Kwh<br />
     {% trans "Day" %} - 1 : {{ kwh_day }} Kwh<br />
     {% trans "Day" %} - 7 : {{ kwh_week }} Kwh<br />
@@ -14,9 +14,9 @@
     <br />
     <h3>
       {% if reboot %}
-        {% trans "Reboot ?" %}
+        {% trans "Reboot" ? %}
       {% else %}
-        {% trans "Shutdown ?" %}
+        {% trans "Shutdown" ? %}
       {% endif %}
     </h3>
     <form action="/bodhi/{{ latest.device.id }}/shutdown" method="post">

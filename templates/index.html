@@ -11,8 +11,8 @@
             <img src="/pix/computer.png" align="left" class="photo" alt="Mac" height="80" />
             <h1>{% trans "Network" %}</h1>
         </a>
-        {% trans "Computers ON" %} : {{nb_ON}}<br />
-        {% trans "Computers OFF" %} : {{nb_OFF}}<br />
+        <font color="green">{% trans "Computers ON" %} : {{nb_ON}}</font><br />
+        <font color="blue">{% trans "Computers OFF" %} : {{nb_OFF}}</font><br />
         {% trans "Computers" %} : {{nb}} <a href="bodhi/pingall"><img src="/pix/icons/down.svg" align="absmiddle" alt=" P " height="32" title="{% trans 'Ping all devices' %}" /></a>
       </div>
     </div>

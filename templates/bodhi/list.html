@@ -25,9 +25,9 @@
         </a>
         {% if device.action == 0 %}
           {% if not device.result %}
-            <font color="green">{% trans "UP" %}</font>
+            <font color="green">{% trans "ON" %}</font>
           {% else %}
-            <font color="blue">{% trans "DOWN" %}</font>
+            <font color="blue">{% trans "OFF" %}</font>
           {% endif %}
         {% endif %}
         {% if device.action == 1 %}
