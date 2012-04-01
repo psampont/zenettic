@@ -11,14 +11,14 @@
 0.5 Schedule WOL/SD
     Calculate Load Average
 0.6 Create groups
+    Rights management
 
 -= TO DO list =-
 + Generate API doc
 ~ enhance the ping
 + Manage IP modification
 + Page error 404 and 500
-~ Rewrite some queries
-~ Review design, make it simplier
+~ Review css, make it simplier
 ~ use argparse
 + Manage difference between Linux and windows for timeout parameter in shutdown
 + Exclude some options from command line : Restrict message parameters to shutdown
