@@ -1,4 +1,12 @@
 -= Changelog =-
+0.4.1
++ Upgrade to new django structure
+0.4
++Show history in web interface
++Calcul of economy
++Schedule ping after shutdown/wakeup
++Web interface translation
+~Template directory path is now relative
 0.3
 + Add user field in history
 + Add timeout and message options for shutdown
