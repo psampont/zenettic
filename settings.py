@@ -70,7 +70,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 #    "c:/Users/psa/Projects/zenettic/templates"
-    "/home/philippe/Projects/zenettic/templates"
+    "/home/psa/Projects/zenettic/templates"
 )
 
 INSTALLED_APPS = (

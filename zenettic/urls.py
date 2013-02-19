@@ -8,7 +8,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     (r'^$', 'lib.webpages.homepage'),
     (r'^help$', 'lib.webpages.help'),
-    (r'^bodhi/', include('zenettic.bodhi.urls')),
+    (r'^bodhi/', include('bodhi.urls')),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs'
     # to INSTALLED_APPS to enable admin documentation:
