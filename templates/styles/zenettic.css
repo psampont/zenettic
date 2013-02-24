@@ -1,6 +1,8 @@
-div#titlerow div.logo {position:absolute; left:40px; top:-10px}
-div#titlerow div.logo a {font-size:25px; font-weight:bolder}
-div#titlerow div.logo span {font-size:26px; font-weight:bold; width:500px; position: absolute; top: 30px; left: 120px;}
+header, nav, footer { display:block; clear:both}
+
+#titlerow div.logo {position:absolute; left:40px; top:-10px}
+#titlerow div.logo a {font-size:25px; font-weight:bolder}
+#titlerow div.logo span {font-size:26px; font-weight:bold; width:500px; position: absolute; top: 30px; left: 120px;}
 
 /* show */
 #show { background-color: white; padding : 5px; margin : 5px 10px; }

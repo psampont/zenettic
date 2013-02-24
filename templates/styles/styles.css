@@ -1,6 +1,5 @@
 html {
     overflow-x:hidden;
-    overflow: -moz-scrollbars-vertical;
 }
 
 * { padding: 0; margin: 0; }
@@ -16,7 +15,7 @@ div {
 
 div#ldapab {margin:0px;}
 
-body {color: #333;background-color: #99cc00;font:14px tahoma,helvetica,arial,freesans,clean,sans-serif;margin:0px;}
+body {color:#333; background-color:white; font:14px tahoma,helvetica,arial,freesans,clean,sansserif; margin:0px;}
 
 div#wholepage {margin:0px; }
 
@@ -32,25 +31,45 @@ div#halfblank{
     height: 100%
 }
 
-/* header */
-div#titlerow {
+/* ************************** */
+/* header                     */
+/* ************************** */
+#titlerow {
     background:#fff url(../pix/background-v2.png) bottom left repeat-x;
     overflow: hidden;
-    height: 120px;
     width: 100%;
-    margin-bottom: 1em;
-    position:absolute;
-    top: 0px;
-    left: 0px;
+    height: 40px;
+    margin-bottom: 6px;
     z-index: -5;
+    font-size: 26px;
+    font-weight: bold;
+    padding-top: 4px;
 }
 
-div#titlerow div.logo {
+#logo {
+    margin-left: 36px;
     float: left;
-    margin-left: 10px;
-    margin-top: 10px;
+    width: 32px;
+    height: 32px;
 }
 
+#log img {
+    width: 32px;
+    height: 32px;
+}
+
+/* ************************** */
+/* footer                     */
+/* ************************** */
+footer {
+    margin-top: 1em;
+    background:#fff url(../pix/background-v2.png) bottom left repeat-x;
+    font-size: 10px;
+    height: 16px;
+    text-align: right;
+}
+
+/* search */
 div#titlerow div.search {
     float: right;
     margin-top: 10px;
@@ -70,16 +89,11 @@ div#titlerow div.search form.tags {
     margin-left: 1em;
 }
 
-div#titlerow div.logo {position:absolute; left:20px; top:-15px}
-div#titlerow div.logo a {font-size:25px; font-weight:bolder}
-div#titlerow div.logo span {font-size:26px; font-weight:bold; width:500px; position: absolute; top: 30px; left: 400px;}
-
-/* search */
 input.searchfield {width:149px;height:16px;padding:4px 10px 2px 21px;font-size:12px;border:none;background:url(../pix/search_field.gif) 0 -22px no-repeat;}
 
 /* toolbar */
 
-div#toolbartop {margin-left: 30px; position: absolute; top: 85px; width: 98%; }
+div#toolbartop {margin-left: 30px; position: absolut; top: 50px; width: 98%; }
 div#toolbarleft {background:url(../pix/back_left.png) left top no-repeat; margin-right: 30px;}
 div#toolbarright {background:url(../pix/back_right.png) right top no-repeat; padding-top: 8px; margin-right: 0px }
 

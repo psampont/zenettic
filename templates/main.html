@@ -1,9 +1,8 @@
 {% load i18n %}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en-GB" dir="ltr">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <meta name="description" content="Manage remote computer"/>
     <link rel="stylesheet" type="text/css" href="/styles/styles.css" />
     <link rel="stylesheet" type="text/css" href="/styles/zenettic.css" />
@@ -19,15 +18,13 @@
         document.body.style.backgroundPosition='center center';
         document.body.style.backgroundRepeat="no-repeat";
     </script>
-    <div id="titlerow">
-        <div class="logo">
-            <a href="/"><img src="/pix/logo.png"></a>
-            <span>Zen & TIC - Bodhi</span>
-        </div>
-    </div>
+    <header id="titlerow">
+    <a href="/"><img id="logo" src="/pix/logo.png">Bodhi</a>
+    </header>
     <div id="toolbartop">
         <div id="toolbarleft">
-            <div id="toolbarright">
+	    <div id="toolbarright">
+                <nav>
                 <div id="toolbar">
                     <div id="toolbarcontent">
                         <ul>
@@ -49,7 +46,8 @@
                         </ul>
                     </div>
                 </div>
-                <div class="content">
+		</nav>
+		<div class="content">
                   {% block main %}
                     {{ text }}
                   {% endblock %}
@@ -69,10 +67,13 @@
                     <div id="footrow">
                     v0.4.1 beta
                     </div>
-                </div>
+	        </div>
             </div>
         </div>
-    </div>
+   </div>
+   <footer>
+     (c) 2013 by SAMPONT Philippe
+   </footer>
 </body>
 </html>
 
