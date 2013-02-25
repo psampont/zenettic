@@ -24,28 +24,23 @@
     <div id="toolbartop">
         <div id="toolbarleft">
 	    <div id="toolbarright">
-                <nav>
-                <div id="toolbar">
-                    <div id="toolbarcontent">
-                        <ul>
-                          <li>
-                              <a href="/" class="ed_home">{% trans "Home" %}</a>
-                          </li>
-                          <li>
-                              <a href="/bodhi/" class="ed_computer">Bodhi</a>
-                          </li>
-                          <li class="sep">&nbsp;</li>
-                          <li class="sep">&nbsp;</li>
-                          <li class="right">
-                             <a href="/help" class="ed_help">{% trans "Help" %}</a>
-                          </li>
-                          <li class="sep">&nbsp;</li>
-                          <li class="right">
-                             <a href="/admin" class="ed_admin">{% trans "Admin" %}</a>
-                          </li>
-                        </ul>
-                    </div>
-                </div>
+                <nav id="toolbar">
+                    <ul>
+                      <li>
+                          <a href="/" class="ed_home">{% trans "Home" %}</a>
+                      </li>
+                      <li>
+                          <a href="/bodhi/" class="ed_computer">Bodhi</a>
+                      </li>
+                      <li class="sep">&nbsp;</li>
+                      <li class="right">
+                         <a href="/help" class="ed_help">{% trans "Help" %}</a>
+                      </li>
+                      <li class="sep">&nbsp;</li>
+                      <li class="right">
+                         <a href="/admin" class="ed_admin">{% trans "Admin" %}</a>
+                      </li>
+                    </ul>
 		</nav>
 		<div class="content">
                   {% block main %}

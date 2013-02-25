@@ -36,10 +36,7 @@ div#halfblank{
 /* ************************** */
 #titlerow {
     background:#fff url(../pix/background-v2.png) bottom left repeat-x;
-    overflow: hidden;
-    width: 100%;
-    height: 40px;
-    margin-bottom: 6px;
+    height: 48px;
     z-index: -5;
     font-size: 26px;
     font-weight: bold;
@@ -49,11 +46,6 @@ div#halfblank{
 #logo {
     margin-left: 36px;
     float: left;
-    width: 32px;
-    height: 32px;
-}
-
-#log img {
     width: 32px;
     height: 32px;
 }
@@ -91,29 +83,61 @@ div#titlerow div.search form.tags {
 
 input.searchfield {width:149px;height:16px;padding:4px 10px 2px 21px;font-size:12px;border:none;background:url(../pix/search_field.gif) 0 -22px no-repeat;}
 
-/* toolbar */
-
-div#toolbartop {margin-left: 30px; position: absolut; top: 50px; width: 98%; }
-div#toolbarleft {background:url(../pix/back_left.png) left top no-repeat; margin-right: 30px;}
-div#toolbarright {background:url(../pix/back_right.png) right top no-repeat; padding-top: 8px; margin-right: 0px }
-
-div#toolbarcontent {background: #99cc00 url(../pix/backtab2.png) bottom left repeat-x;border:1px solid #ddd;-webkit-border-radius:5px;-moz-border-radius:5px; margin-left:10px; margin-right:10px; height:30px; padding-top:5px;padding-left:5px;padding-right:5px;z-index:10}
-
-div#toolbarcontent {background:#eee url(../pix/tab_background.png?v2) bottom left repeat-x;border:1px solid #ddd;-webkit-border-radius:5px;-moz-border-radius:5px; margin-left:10px; margin-right:10px; height:30px; padding-top:5px;}
-
-div#toolbar {
-    margin-bottom:5px;
+/* ************************** */
+/* toolbar                    */
+/* ************************** */
+#toolbartop { 
+    margin-left: 30px;
+    margin-top: -8px;
+}
+#toolbarleft {
+    background:url(../pix/back_left.png) left top no-repeat; 
+    margin-right: 30px;
+}
+#toolbarright {
+    background:url(../pix/back_right.png) right top no-repeat; 
+    padding-top: 8px; 
+    margin-right: 0px 
 }
 
-div#toolbar ul li {display:inline-block;position:relative;left:0px;top:3px}
-div#toolbar ul li a {font-size:11px;font-weight:bold;text-decoration:none;color:#666;border:1px solid #ccc;-webkit-border-radius:10px;-moz-border-radius:10px;padding-right:5px;padding-left:25px;padding-top:5px;padding-bottom:5px;margin-right: 0px;}
+#toolbar {
+    background:#eee url(../pix/tab_background.png?v2) bottom left repeat-x;
+    border:1px solid #ddd;
+    border-radius:5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    padding-top:5px;
+    padding-bottom:5px;
+}
 
-div#toolbar ul li.sep {
+#toolbar li {
+    display: inline-block;
+    position: relative;
+    left: 0px; 
+    top: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #666;
+    height: 20px;
+}
+#toolbar li a {
+    text-decoration:none;
+    border:1px solid #ccc;
+    border-radius:10px;
+    padding-right:5px;
+    padding-left:25px;
+    padding-top:5px;
+    padding-bottom:5px;
+    margin-right: 0px;
+}
+
+#toolbar li.sep {
     border: none;
     width: 5px;
 }
 
-div#toolbar ul li.right {
+#toolbar li.right {
     float: right;
 }
 
@@ -182,12 +206,12 @@ div#footrow ul li.sep {
 }
 
 /* content */
-div#content {
+#content {
     background: url("../pix/halfblank.png");
     padding:0px;
     margin-left:10px;
     margin-right:10px;
-    border:1px solid #ddd;-webkit-border-radius:5px;-moz-border-radius:5px;
+    border:1px solid #ddd;border-radius:5px;
     height: auto !important;
     min-height: 630px;
     z-index: 10;
