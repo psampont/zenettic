@@ -5,16 +5,16 @@
       {% if not device %}
         <p>{% trans "No device in the DB." %}</p>
       {% else %}
+        <h1>{{device.name}}</h1>
         {% if device.platform == 'linux' %}
-            <img src="/pix/computer_linux.png" align="left" class="photo" alt="PC Linux" height="80" />
+            <img src="/pix/computer_linux.png" class="photo" alt="PC Linux" height="80" />
         {% else %}
           {% if device.platform == 'win32' %}
-            <img src="/pix/computer_win32.png" align="left" class="photo" alt="PC Windows" height="80" />
+            <img src="/pix/computer_win32.png" class="photo" alt="PC Windows" height="80" />
           {% else %}
-            <img src="/pix/computer.png" align="left" class="photo" alt="Mac" height="80" />
+            <img src="/pix/computer.png" class="photo" alt="Mac" height="80" />
           {% endif %}
         {% endif %}
-        <h1>{{device.name}}</h1>
         <p>
         IP: {{ device.IP }}<br />
         MAC: {{ device.MAC }}
@@ -37,7 +37,8 @@
         {% endif %}
         <br />
         <font size="-1">{{latest.timestamp}}</font><br />
-        <a href="ping"><img src="/pix/icons/down.svg" alt=" P " height="32" /></a>
+        <div class="action">
+	  <a href="ping"><img src="/pix/icons/down.svg" alt=" P " height="32" /></a>
         {% if latest.action == 0 %}
           {% if latest.result %}
              <a href="wol"><img src="/pix/icons/reveil.svg" alt=" W " height="32" /></a>
@@ -45,7 +46,8 @@
              <a href="pass"><img src="/pix/icons/shutdown.svg" alt=" S " height="32" /></a>
              <a href="pass?reboot=1"><img src="/pix/icons/restart.svg" alt=" R " height="32" /></a>
           {% endif %}
-        {% endif %}
+	{% endif %}
+	</div>
       {% endif %}
       <h2>{% trans "Power consumption" %}</h2>
       {% trans "Power" %} : {{ device.watt }} Watt<br />

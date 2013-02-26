@@ -6,15 +6,29 @@
 {% endblock %}
 {% block main %}
     <div id="entrycontainer" class="clearfix">
-      <div class="facelist_entry">
+      <div class="group_entry">
+	<h1><font color="green">{% trans "ON" %}</font></h1>
+	{{nb_ON}} {% trans "computers" %}<br>
         <a href="bodhi/">
-            <img src="/pix/computer.png" align="left" class="photo" alt="Mac" height="80" />
-            <h1>{% trans "Network" %}</h1>
+            <img src="/pix/computer.png" class="photo" alt="Mac" height="80" />
         </a>
-        <font color="green">{% trans "Computers ON" %} : {{nb_ON}}</font><br />
-        <font color="blue">{% trans "Computers OFF" %} : {{nb_OFF}}</font><br />
-        {% trans "Computers" %} : {{nb}} <a href="bodhi/pingall"><img src="/pix/icons/down.svg" align="absmiddle" alt=" P " height="32" title="{% trans 'Ping all devices' %}" /></a>
+        <div class="action">    
+	    <a href="bodhi/pingall"><img src="/pix/icons/down.svg" alt=" P " height="32" title="{% trans 'Ping all devices' %}" /></a>
+	</div>
+      </div>
+      <div class="group_entry">
+	<h1><font color="blue">{% trans "OFF" %}</font></h1>
+	{{nb_OFF}} {% trans "computers" %}<br>
+        <a href="bodhi/">
+            <img src="/pix/computer.png" class="photo" alt="Mac" height="80" />
+        </a>
+        <div class="action">    
+          <a href="bodhi/pingall"><img src="/pix/icons/down.svg" alt=" P " height="32" title="{% trans 'Ping all devices' %}" /></a>
+	</div>
       </div>
     </div>
+{% endblock %}
+{% block status %}
+    {% trans "Computers" %} : {{nb}} 
 {% endblock %}
 

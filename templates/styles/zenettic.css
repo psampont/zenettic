@@ -1,29 +1,54 @@
 header, nav, footer { display:block; clear:both}
 
-#titlerow div.logo {position:absolute; left:40px; top:-10px}
-#titlerow div.logo a {font-size:25px; font-weight:bolder}
-#titlerow div.logo span {font-size:26px; font-weight:bold; width:500px; position: absolute; top: 30px; left: 120px;}
-
 /* show */
 #show { background-color: white; padding : 5px; margin : 5px 10px; }
-.photo { margin-right : 1em }
 
 /* error */
-div#errorheader {background: red }
-div#errorcontent { padding : 5px }
+#errorheader {background: red }
+#errorcontent { padding : 5px }
 
 /* entry */
-div#entrycontainer {width:100%; margin : 0px 10px;}
+#entrycontainer {margin : 0px 10px;}
 
 /* face entry container */
-div.facelist_entry {width:100%;}
+.group_entry {
+    float: left;  
+    height:180px;
+    width:100px; 
+    border:1px solid #ccc; 
+    border-radius:0px 10px 10px 0px;
+    padding:5px;
+    margin:2px; 
+    background-color:#fff;
+}
+.group_entry:hover {
+    background-color:#dddedd; 
+}
+.group_entry .title {
+    font-weight:bold;
+}
 
-div.facelist_entry {float: left; height:100px;width:360px; border:1px solid #ccc;border-radius:0px 10px 10px 0px;padding:5px;margin:2px; background-color:#fff;}
-div.facelist_entry:hover {float: left; height:100px;width:360px; border:1px solid #ccc;border-radius:0px 10px 10px 0px;padding:5px;margin:2px:background-color:#dddedd; }
+.facelist_entry {
+    float: left;  
+    height:160px;
+    width:280px; 
+    border:1px solid #ccc; 
+    border-radius:0px 10px 10px 0px;
+    padding:5px;
+    margin:2px; 
+    background-color:#fff;
+}
+.facelist_entry:hover {
+    background-color:#dddedd; 
+}
+.facelist_entry .title {
+    font-weight:bold;
+}
 
-div.facelist_entry .title {font-weight:bold;}
-
-a.ed_computer {
+.ed_computer {
     background: transparent url(../pix/icons/computer.png) 4px 4px no-repeat;
+}
+.ed_computer:hover {
+    background: #ccc url(../pix/icons/computer.png) 4px 4px no-repeat;
 }
 

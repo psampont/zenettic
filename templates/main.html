@@ -59,15 +59,16 @@
     </div>
     {% endif %}
                 <div id="footrowcontent">
-                    <div id="footrow">
-                    v0.4.1 beta
+		    <div id="footrow">
+                    {% block status %}
+                    {% endblock %}
                     </div>
 	        </div>
             </div>
         </div>
    </div>
    <footer>
-     (c) 2013 by SAMPONT Philippe
+     Version 0.4.1 beta (c) 2013 by SAMPONT Philippe
    </footer>
 </body>
 </html>
