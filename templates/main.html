@@ -16,47 +16,39 @@
         document.body.style.backgroundImage="url(/pix/backgrounds/mountain.jpg)";
         document.body.style.backgroundAttachment='fixed';
         document.body.style.backgroundPosition='center center';
-        document.body.style.backgroundRepeat="no-repeat";
+        document.body.style.backgroundRepeat="repeat";
     </script>
     <header id="titlerow">
-    <a href="/"><img id="logo" src="/pix/logo.png">Bodhi</a>
+        <a href="/"><img id="logo" src="/pix/logo.png">Bodhi</a>
+	<nav id="toolbar">
+            <ul>
+               <li class="ed_home"><a href="/">{% trans "Home" %}</a></li>
+               <li class="ed_computer"><a href="/bodhi/">Bodhi</a></li>
+	       <li class="sep">&nbsp;</li>
+	       <li class="right ed_help"><a href="/help">{% trans "Help" %}</a></li>
+               <li class="right ed_admin"><a href="/admin">{% trans "Admin" %}</a></li>
+            </ul>
+	</nav>
     </header>
-    <div id="toolbartop">
-        <div id="toolbarleft">
-	    <div id="toolbarright">
-                <nav id="toolbar">
-                    <ul>
-                      <li>
-                          <a href="/" class="ed_home">{% trans "Home" %}</a>
-                      </li>
-                      <li>
-                          <a href="/bodhi/" class="ed_computer">Bodhi</a>
-                      </li>
-                      <li class="sep">&nbsp;</li>
-                      <li class="right">
-                         <a href="/help" class="ed_help">{% trans "Help" %}</a>
-                      </li>
-                      <li class="sep">&nbsp;</li>
-                      <li class="right">
-                         <a href="/admin" class="ed_admin">{% trans "Admin" %}</a>
-                      </li>
-                    </ul>
-		</nav>
-		<div class="content">
+    <div id="contentleft">
+	    <div id="contentright">
+		<div id="contenttop">
+	        </div>
+		<div id="content">
                   {% block main %}
                     {{ text }}
                   {% endblock %}
                 </div>
     {% if error_message %}
-    <div id="errorcontainer">
-      <div id="errortop">
-        <div id="errorheader">{% trans "ERROR" %}</div>
-        <div id="errorcontent">
+      <div id="errorcontainer">
+        <div id="errortop">
+          <div id="errorheader">{% trans "ERROR" %}</div>
+          <div id="errorcontent">
             {{ error_message }}
+          </div>
+          <div id="errorfooter"></div>
         </div>
-        <div id="errorfooter"></div>
       </div>
-    </div>
     {% endif %}
                 <div id="footrowcontent">
 		    <div id="footrow">
@@ -66,7 +58,6 @@
 	        </div>
             </div>
         </div>
-   </div>
    <footer>
      Version 0.4.1 beta (c) 2013 by SAMPONT Philippe
    </footer>

@@ -84,52 +84,68 @@ div#titlerow div.search form.tags {
 input.searchfield {width:149px;height:16px;padding:4px 10px 2px 21px;font-size:12px;border:none;background:url(../pix/search_field.gif) 0 -22px no-repeat;}
 
 /* ************************** */
-/* toolbar                    */
+/* content                    */
 /* ************************** */
-#toolbartop { 
-    margin-left: 30px;
-    margin-top: -8px;
+#contenttop { 
+    margin-top: 6px;
+    margin-left: 8px;
+    margin-right: 8px; 
+    background-color: white;
+    height: 8px;
 }
-#toolbarleft {
+#contentleft {
     background:url(../pix/back_left.png) left top no-repeat; 
     margin-right: 30px;
+    margin-left: 30px;
 }
-#toolbarright {
+#contentright {
     background:url(../pix/back_right.png) right top no-repeat; 
-    padding-top: 8px; 
     margin-right: 0px 
+}
+#content {
+    background: url("../pix/halfblank.png");
+    padding:0px;
+    margin-left:10px;
+    margin-right:10px;
+    border:1px solid #ddd;border-radius:0px 0px 5px 5px;
+    height: auto !important;
+    min-height: 400px;
+    z-index: 10;
+}
+
+/* ************************** */
+/* toolbar                    */
+/* ************************** */
+nav {
+    display: inline-block;
 }
 
 #toolbar {
-    background:#eee url(../pix/tab_background.png?v2) bottom left repeat-x;
+    background:#eee; url(../pix/tab_background.png?v2) bottom left repeat-x;
+    float: right;
     border:1px solid #ddd;
     border-radius:5px;
     margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 5px;
-    padding-top:5px;
-    padding-bottom:5px;
+    margin-right: 40px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom:10px;
 }
 
 #toolbar li {
-    display: inline-block;
-    position: relative;
-    left: 0px; 
-    top: 3px;
+    display: inline;
+    border:1px solid #ccc;
+    border-radius:10px;
     font-size: 12px;
     font-weight: bold;
     color: #666;
-    height: 20px;
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-right:5px;
+    padding-left:25px;
 }
 #toolbar li a {
     text-decoration:none;
-    border:1px solid #ccc;
-    border-radius:10px;
-    padding-right:5px;
-    padding-left:25px;
-    padding-top:5px;
-    padding-bottom:5px;
-    margin-right: 0px;
 }
 
 #toolbar li.sep {
@@ -138,7 +154,7 @@ input.searchfield {width:149px;height:16px;padding:4px 10px 2px 21px;font-size:1
 }
 
 #toolbar li.right {
-    float: right;
+    ffloat: right;
 }
 
 /* sidebar filterrow */
@@ -205,17 +221,6 @@ div#footrow ul li.sep {
     width: 5px;
 }
 
-/* content */
-#content {
-    background: url("../pix/halfblank.png");
-    padding:0px;
-    margin-left:10px;
-    margin-right:10px;
-    border:1px solid #ddd;border-radius:5px;
-    height: auto !important;
-    min-height: 630px;
-    z-index: 10;
-}
 
 div.margin {
     margin: 5px
@@ -383,29 +388,60 @@ a:active {
     cursor: pointer;
 }
 
-/* images on buttons */
-a.ed_help {
-    background: transparent url(../pix/icons/help.png) 4px 4px no-repeat;
+/* ************************** */
+/* images on buttons          */
+/* ************************** */
+.ed_help {
+    background: transparent url(../pix/icons/help.png) 4px no-repeat;
 }
 
+.ed_home {
+    background: transparent url(../pix/icons/favicon.png) 4px no-repeat;
+}
+
+.ed_admin {
+    background: transparent url(../pix/icons/admin.png) 4px no-repeat;
+}
+
+.ed_computer {
+    background: transparent url(../pix/icons/computer.png) 4px no-repeat;
+}
+
+.ed_computer:hover {
+    background: #ccc url(../pix/icons/computer.png) 4px no-repeat;
+}
+
+.ed_help:hover {
+    background: #ccc url(../pix/icons/help.png) 4px no-repeat;
+}
+
+.ed_home:hover {
+    background: #ccc url(../pix/icons/favicon.png) 4px no-repeat;
+}
+
+.ed_admin:hover {
+    background: #ccc url(../pix/icons/admin.png) 4px no-repeat;
+}
+
+/* images on buttons */
 a.ed_orgs {
-    background: transparent url(../pix/icons/user_all.png) 4px 4px no-repeat;
+    background: transparent url(../pix/icons/user_all.png) 4px no-repeat;
 }
 
 a.ed_new {
-    background: transparent url(../pix/icons/page_add.png) 4px 4px no-repeat;
+    background: transparent url(../pix/icons/page_add.png) 4px no-repeat;
 }
 
 a.ed_show {
-    background: transparent url(../pix/icons/page_red.png) 4px 4px no-repeat;
+    background: transparent url(../pix/icons/page_red.png) 4px no-repeat;
 }
 
 a.ed_edit {
-    background: transparent url(../pix/icons/page_edit.png) 4px 4px no-repeat;
+    background: transparent url(../pix/icons/page_edit.png) 4px no-repeat;
 }
 
 a.ed_copy {
-    background: transparent url(../pix/icons/page_copy.png) 4px 4px no-repeat;
+    background: transparent url(../pix/icons/page_copy.png) 4px no-repeat;
 }
 
 a.ed_delete {
@@ -444,10 +480,6 @@ a.ed_logout {
     background: transparent url(../pix/icons/key_go.png) 4px 4px no-repeat;
 }
 
-a.ed_home {
-    background: transparent url(../pix/icons/favicon.png) 4px 4px no-repeat;
-}
-
 a.ed_meetingadd {
     background: transparent url(../pix/icons/meeting_add.png) 4px 4px no-repeat;
 }
@@ -470,10 +502,6 @@ a.ed_saveform {
 
 a.ed_cancel {
     background: #b0d347 url(../pix/icons/sremove.png) 4px 4px no-repeat;
-}
-
-a.ed_admin {
-    background: transparent url(../pix/icons/admin.png) 4px 4px no-repeat;
 }
 
 a.ed_faces {
@@ -582,10 +610,6 @@ a.ed_logout:hover {
     background: #ccc url(../pix/icons/key_go.png) 4px 4px no-repeat;
 }
 
-a.ed_admin:hover {
-    background: #ccc url(../pix/icons/admin.png) 4px 4px no-repeat;
-}
-
 a.ed_cancel:hover {
     background: #ccc url(../pix/icons/sremove.png) 4px 4px no-repeat;
 }
@@ -608,14 +632,6 @@ a.ed_close:hover {
 
 a.ed_meetingadd:hover {
     background: #ccc url(../pix/icons/meeting_add.png) 4px 4px no-repeat;
-}
-
-a.ed_help:hover {
-    background: #ccc url(../pix/icons/help.png) 4px 4px no-repeat;
-}
-
-a.ed_home:hover {
-    background: #ccc url(../pix/icons/favicon.png) 4px 4px no-repeat;
 }
 
 /* photo */

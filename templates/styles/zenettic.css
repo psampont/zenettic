@@ -1,4 +1,4 @@
-header, nav, footer { display:block; clear:both}
+header, footer { display:block; clear:both}
 
 /* show */
 #show { background-color: white; padding : 5px; margin : 5px 10px; }
@@ -45,10 +45,4 @@ header, nav, footer { display:block; clear:both}
     font-weight:bold;
 }
 
-.ed_computer {
-    background: transparent url(../pix/icons/computer.png) 4px 4px no-repeat;
-}
-.ed_computer:hover {
-    background: #ccc url(../pix/icons/computer.png) 4px 4px no-repeat;
-}
 
