@@ -18,7 +18,7 @@
 ~ enhance the ping
 + Manage IP modification
 + Page error 404 and 500
-~ Review css, make it simplier
+~ Review css : cleaning code
 ~ use argparse
 + Manage difference between Linux and windows for timeout parameter in shutdown
 + Exclude some options from command line : Restrict message parameters to shutdown

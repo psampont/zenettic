@@ -1,6 +1,7 @@
 -= Changelog =-
 0.4.1
 + Upgrade to new django structure
++ Review design
 0.4
 +Show history in web interface
 +Calcul of economy

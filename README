@@ -8,7 +8,7 @@ This version is a development version and deployment in production environment i
 
 This software need :
 - Python >= 2.7
-- Django >= 1.2
+- Django >= 1.4
 - PyCairo
 - For shutdowns of Windows computers : Samba on Linux / Pywin32 on Windows
 
