@@ -22,9 +22,9 @@ import getpass
 ######################################################################
 
 from django.core.management import setup_environ
-import settings
+import zenettic.settings
 
-setup_environ(settings)
+setup_environ(zenettic.settings)
 
 from bodhi.models import Device, History
 from bodhi.choices import *
